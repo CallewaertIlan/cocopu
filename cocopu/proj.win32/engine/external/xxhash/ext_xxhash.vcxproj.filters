@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="S:\cocopu\cocopu\cocos2d\external\xxhash\xxhash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="S:\cocopu\cocopu\cocos2d\external\xxhash\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{465046B1-68FC-3267-ABA9-C22B0FB43172}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
