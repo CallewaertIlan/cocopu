@@ -1,0 +1,63 @@
+Global 		-> timer
+		-> sound ( coeur brise / aventador)
+
+
+character 	-> auto movement
+		-> jump
+		-> bounce
+		-> fall
+		-> animation 	-> fall 
+				-> right
+				-> left
+				-> action
+				-> bounce
+		-> 1hp
+
+Animation
+
+Entity		-> character
+		-> trap
+		-> obstacle	-> rock
+				-> dirt
+				-> grass
+				-> 
+
+		-> door		-> type (enter / exit)
+
+collision
+
+scene 		-> menu		-> title
+				-> play
+				-> options
+				-> exit
+
+		-> results	-> win or lose 	-> if lose 2 raisons ( to much death / time out )
+				-> number of lives 
+				-> number of saves lives 
+				-> % of saves lives and objectif
+				-> win -> time left or time since start of game
+
+controler	-> mouse
+
+action		-> list action 	-> dig (down)
+				-> mine	(right & left)
+				-> explosion 	-> countdown
+						-> can kill
+				-> become a wall with timer, you shall not pass (gandalf sprite)
+		-> count action 
+
+
+HUD		-> actions
+		-> timer
+		-> (ex: 0/10 ou 0%) people who take the door
+		-> (ex: 10) people spawn on map
+		-> (ex: 15) people spawned
+		-> button acceleration (on / off)
+
+Map		-> loadMap with .txt
+		-> spawn character with couldown 
+
+Important 	-> Warning
+		-> memory leak
+		-> bugs	
+
