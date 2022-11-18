@@ -1,4 +1,6 @@
-#include "HelloWorldScene.h"
+#include "cocos2d.h"
+
+#include "../../proj.win32/includes.h"
 
 USING_NS_CC;
 
@@ -17,8 +19,8 @@ static void problemLoading(const char* filename)
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
-    //////////////////////////////
-    // 1. super init first
+    m_side_right = true;
+
     if ( !Scene::init() )
     {
         return false;
@@ -76,20 +78,53 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-    if (sprite == nullptr)
-    {
-        problemLoading("'HelloWorld.png'");
-    }
-    else
-    {
-        // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    //visibleSize.width / 2 + origin.x;
+    //// add "HelloWorld" splash screen"
+    //auto sprite = Sprite::create("HelloWorld.png");
+    //if (sprite == nullptr)
+    //{
+    //    problemLoading("'HelloWorld.png'");
+    //}
+    //else
+    //{
+    //    // position the sprite on the center of the screen
+    //    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
-        // add the sprite as a child to this layer
-        this->addChild(sprite, 0);
+    //    // add the sprite as a child to this layer
+    //    this->addChild(sprite, 0);
+    //}
+    
+    Character* character = new Character();
+    addChild(character, 0);
+    character->scheduleUpdate();
+    character->addChild(character->getSprite(), 0);
+
+    vector<Entity*>m_listEntities;
+    ifstream inFile;
+
+    inFile.open("../Resources/level/Map.txt", ios::in);
+    int count = 0;
+    string tp;
+    while (getline(inFile, tp)) {
+        for (int i = 0; i < tp.size(); i++)
+        {
+            if (tp[i] == '1') {
+                Entity* dirt = new Entity();
+                dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DIRT);
+                m_listEntities.push_back(dirt);
+                character->addChild(m_listEntities[m_listEntities.size() - 1]->getSprite(), 0);
+            }
+            else if (tp[i] == 'P') {
+                Entity* door_open = new Entity();
+                door_open->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DOOR_OPEN);
+                m_listEntities.push_back(door_open);
+                character->addChild(m_listEntities[m_listEntities.size() - 1]->getSprite(), 0);
+            }
+        }
+        count++;
     }
+    inFile.close();
+
     return true;
 }
 
@@ -98,11 +133,5 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
-
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() as given above,instead trigger a custom event created in RootViewController.mm as below*/
-
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
-
 
 }

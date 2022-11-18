@@ -61,3 +61,6 @@ Important 	-> Warning
 		-> memory leak
 		-> bugs	
 
+rejout 	parachute
+	dégats de chute
+	téléportation

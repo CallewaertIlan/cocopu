@@ -1,26 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="S:\cocopu\cocopu\Classes\AppDelegate.cpp">
-      <Filter>Source Files\Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="S:\cocopu\cocopu\Classes\HelloWorldScene.cpp">
-      <Filter>Source Files\Classes</Filter>
-    </ClCompile>
     <ClCompile Include="S:\cocopu\cocopu\proj.win32\main.cpp">
       <Filter>Source Files\proj.win32</Filter>
     </ClCompile>
     <ClCompile Include="S:\cocopu\cocopu\cocos2d\cocos\precheader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="S:\cocopu\cocopu\Classes\AppDelegate.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="S:\cocopu\cocopu\Classes\HelloWorldScene.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Controler.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="S:\cocopu\cocopu\Classes\AppDelegate.h">
-      <Filter>Source Files\Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="S:\cocopu\cocopu\Classes\HelloWorldScene.h">
-      <Filter>Source Files\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="S:\cocopu\cocopu\proj.win32\main.h">
       <Filter>Source Files\proj.win32</Filter>
     </ClInclude>
@@ -44,6 +59,36 @@
     </ClInclude>
     <ClInclude Include="S:\cocopu\cocopu\Resources\res\.gitkeep">
       <Filter>Resources\res</Filter>
+    </ClInclude>
+    <ClInclude Include="S:\cocopu\cocopu\Classes\AppDelegate.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="S:\cocopu\cocopu\Classes\HelloWorldScene.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Controler.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="includes.h">
+      <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -73,5 +118,19 @@
     <Filter Include="Source Files\proj.win32">
       <UniqueIdentifier>{2ACA4EE6-E56A-3512-A481-0763F0230C3E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Classes\C++">
+      <UniqueIdentifier>{58ebbd4f-bc30-4b70-aa97-a3d280f1cd80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Classes\H">
+      <UniqueIdentifier>{a16c4108-7da1-4127-bbf8-a4ad48f3431a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Classes\Level">
+      <UniqueIdentifier>{521315c9-4d93-441b-80b6-b99da31855c8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Resources\level\Map.txt">
+      <Filter>Source Files\Classes\Level</Filter>
+    </Text>
   </ItemGroup>
 </Project>
