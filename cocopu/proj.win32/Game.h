@@ -12,10 +12,13 @@ public:
 
 	void LoadRessources();
 
+	void update(float) override;
+
 	// implement the "static create()" method manually
 	CREATE_FUNC(Game);
 
 private:
-	vector<Entity*> m_listEntities;
+	vector<Entity*> m_listObject;
+	vector<Character*> m_listCharacter;
 	Layer gameLayer;
 };

@@ -35,9 +35,9 @@ bool HelloWorld::init()
 
     // add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = MenuItemImage::create(
-                                           "CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+        "ExitNormal.png",
+        "ExitSelected.png",
+        CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
 
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
@@ -47,15 +47,32 @@ bool HelloWorld::init()
     }
     else
     {
-        float x = origin.x + visibleSize.width - closeItem->getContentSize().width/2;
-        float y = origin.y + closeItem->getContentSize().height/2;
-        closeItem->setPosition(Vec2(x,y));
+        closeItem->setPosition(Vec2(800, 400));
+    }
+
+    auto playItem = MenuItemImage::create(
+        "PlayNormal.png",
+        "PlaySelected.png",
+        CC_CALLBACK_1(HelloWorld::menuPlayCallback, this));
+
+    if (playItem == nullptr ||
+        playItem->getContentSize().width <= 0 ||
+        playItem->getContentSize().height <= 0)
+    {
+        problemLoading("'PlayNormal.png' and 'PlaySelected.png'");
+    }
+    else
+    {
+        playItem->setPosition(Vec2(800, 550));
     }
 
     // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
+    auto close = Menu::create(closeItem, NULL);
+    close->setPosition(Vec2::ZERO);
+    this->addChild(close, 10);
+    auto play = Menu::create(playItem, NULL);
+    play->setPosition(Vec2::ZERO);
+    this->addChild(play, 10);
 
     /////////////////////////////
     // 3. add your codes below...
@@ -63,7 +80,7 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
 
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+    auto label = Label::createWithTTF("Cocopu Menu", "fonts/Marker Felt.ttf", 75);
     if (label == nullptr)
     {
         problemLoading("'fonts/Marker Felt.ttf'");
@@ -78,26 +95,37 @@ bool HelloWorld::init()
         this->addChild(label, 1);
     }
 
-    //visibleSize.width / 2 + origin.x;
-    //// add "HelloWorld" splash screen"
-    //auto sprite = Sprite::create("HelloWorld.png");
-    //if (sprite == nullptr)
-    //{
-    //    problemLoading("'HelloWorld.png'");
-    //}
-    //else
-    //{
-    //    // position the sprite on the center of the screen
-    //    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    // add "HelloWorld" splash screen"
+    auto sprite = Sprite::create("HelloWorld.png");
+    if (sprite == nullptr)
+    {
+        problemLoading("'HelloWorld.png'");
+    }
+    else
+    {
+        // position the sprite on the center of the screen
+        sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
 
-    //    // add the sprite as a child to this layer
-    //    this->addChild(sprite, 0);
-    //}
+        // add the sprite as a child to this layer
+        this->addChild(sprite, 0);
+
+        auto rotateBy = RotateBy::create(1.0f, 40.0f);
+        sprite->runAction(RepeatForever::create(rotateBy));
+    }
     
-    Character* character = new Character();
-    addChild(character, 0);
-    character->scheduleUpdate();
-    character->addChild(character->getSprite(), 0);
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            //Character* character = new Character();
+            //addChild(character, 0);
+            //character->init(WINSIZE_Y / 2.0f + j * 50.0f - 200.0f, WINSIZE_Y / 2.0f + i * 50.0f - 200.0f);
+            //character->scheduleUpdate();
+            //character->addChild(character->getSprite(), 0);
+            //auto rotateBy = RotateBy::create(1.0f, 500.0f);
+            //character->runAction(RepeatForever::create(rotateBy));
+        }
+    }
 
     return true;
 }
@@ -107,5 +135,13 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
+}
 
+void HelloWorld::menuPlayCallback(Ref* pSender) {
+    // create a scene. it's an autorelease object
+    auto game = new Game;
+    auto gameScene = game->createScene();
+
+    Director::getInstance()->replaceScene(gameScene);
+    //Director::getInstance()->runWithScene(gameScene);
 }

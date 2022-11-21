@@ -41,6 +41,11 @@ bool Game::init()
     return true;
 }
 
+
+void Game::update(float f) {
+
+}
+
 void Game::LoadRessources()
 {
     ifstream inFile;
@@ -54,20 +59,26 @@ void Game::LoadRessources()
             if (tp[i] == '1') {
                 Entity* dirt = new Entity();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DIRT);
-                m_listEntities.push_back(dirt);
-                gameLayer.addChild(m_listEntities[m_listEntities.size() - 1]->getSprite(), 0);
+                m_listObject.push_back(dirt);
+                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
             }
             else if (tp[i] == '2') {
                 Entity* dirt = new Entity();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL);
-                m_listEntities.push_back(dirt);
-                gameLayer.addChild(m_listEntities[m_listEntities.size() - 1]->getSprite(), 0);
+                m_listObject.push_back(dirt);
+                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
             }
             else if (tp[i] == 'D') {
                 Entity* door_open = new Entity();
                 door_open->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DOOR_OPEN);
-                m_listEntities.push_back(door_open);
-                gameLayer.addChild(m_listEntities[m_listEntities.size() - 1]->getSprite(), 0);
+                m_listObject.push_back(door_open);
+                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
+            }
+            else if (tp[i] == 'C') {
+                Character* character = new Character();
+                character->init(i * 32.0f, WINSIZE_Y - (count * 18.0f));
+                m_listCharacter.push_back(character);
+                gameLayer.addChild(character);
             }
         }
         count++;

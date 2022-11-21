@@ -85,15 +85,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto game = new Game;
-    auto gameScene = game->createScene();
-
-    // create a scene. it's an autorelease object
     auto menu = new HelloWorld;
     auto menuScene = menu->createScene();
 
     // run
-    director->runWithScene(gameScene);
+    director->runWithScene(menuScene);
 
     return true;
 }
