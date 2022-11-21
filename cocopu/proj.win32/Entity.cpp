@@ -17,11 +17,11 @@ void Entity::initialisation(float x, float y, int type)
 	case DIRT:
 		m_sprite = Sprite::create("metal.png");
 		break;
+	case WALL:
+		m_sprite = Sprite::create("metal.png");
+		break;
 	case DOOR_OPEN:
 		m_sprite = Sprite::create("door_open.png");
-		break;
-	case DOOR_CLOSED:
-		m_sprite = Sprite::create("metal.png");
 		break;
 	default:
 		break;
