@@ -38,11 +38,22 @@ bool Game::init()
 
     LoadRessources();
 
+    scheduleUpdate();
+
     return true;
 }
 
 
 void Game::update(float f) {
+
+    // Update collide
+    for (int i = 0; i < m_listCharacter.size(); i++)
+    {
+        for (int j = 0; j < m_listObject.size(); j++)
+        {
+            m_listCharacter[i]->collision(*m_listObject[j]);
+        }
+    }
 
 }
 
@@ -59,18 +70,21 @@ void Game::LoadRessources()
             if (tp[i] == '1') {
                 Entity* dirt = new Entity();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DIRT);
+                dirt->setAnchorPoint(Vec2(0.5f, 0.5f));
                 m_listObject.push_back(dirt);
                 gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
             }
             else if (tp[i] == '2') {
                 Entity* dirt = new Entity();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL);
+                dirt->setAnchorPoint(Vec2(0.5f, 0.5f));
                 m_listObject.push_back(dirt);
                 gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
             }
             else if (tp[i] == 'D') {
                 Entity* door_open = new Entity();
                 door_open->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DOOR_OPEN);
+                door_open->setAnchorPoint(Vec2(0.5f, 0.5f));
                 m_listObject.push_back(door_open);
                 gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
             }

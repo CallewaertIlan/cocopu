@@ -127,10 +127,36 @@
     <Filter Include="Source Files\Classes\Level">
       <UniqueIdentifier>{521315c9-4d93-441b-80b6-b99da31855c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Classes\Resources">
+      <UniqueIdentifier>{56c5222f-f30a-4233-8f9c-fe6e71e037a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Resources\level\Map.txt">
       <Filter>Source Files\Classes\Level</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\PlaySelected.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
+    <Image Include="..\Resources\megaman_tileset_left.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
+    <Image Include="..\Resources\megaman_tileset_right.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
+    <Image Include="..\Resources\PlayNormal.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
+    <Image Include="..\Resources\door_open.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
+    <Image Include="..\Resources\lemming.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
+    <Image Include="..\Resources\Metal.jpg">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>

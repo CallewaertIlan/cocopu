@@ -905,6 +905,15 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <Text Include="..\Resources\level\Map.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resources\door_open.png" />
+    <Image Include="..\Resources\lemming.png" />
+    <Image Include="..\Resources\megaman_tileset_left.png" />
+    <Image Include="..\Resources\megaman_tileset_right.png" />
+    <Image Include="..\Resources\Metal.jpg" />
+    <Image Include="..\Resources\PlayNormal.png" />
+    <Image Include="..\Resources\PlaySelected.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

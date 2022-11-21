@@ -11,10 +11,19 @@ public:
 	//cocos2d::Sprite* getSprite() { return m_sprite; };
 
 	void update(float) override;
-	void problemLoading(const char* filename);
+
 	void move();
+	
+	void swipSide();
+
+	void collision(Entity& entity);
+	float getDistance(Entity& entity);
+
+	void problemLoading(const char* filename);
 private:
 	//cocos2d::Sprite* m_sprite;
 
+	bool m_collideWall;
+	bool m_collideDirt;
 	bool m_side_right;
 };
