@@ -6,7 +6,8 @@ public:
 	enum type
 	{
 		DIRT = 0,
-		WALL,
+		WALL_RIGHT,
+		WALL_LEFT,
 		DOOR_OPEN,
 		DOOR_CLOSED,
 

@@ -17,7 +17,10 @@ void Entity::initialisation(float x, float y, int type)
 	case DIRT:
 		m_sprite = Sprite::create("metal.png");
 		break;
-	case WALL:
+	case WALL_RIGHT:
+		m_sprite = Sprite::create("metal.png");
+		break;
+	case WALL_LEFT:
 		m_sprite = Sprite::create("metal.png");
 		break;
 	case DOOR_OPEN:
@@ -27,6 +30,6 @@ void Entity::initialisation(float x, float y, int type)
 		break;
 	}
 	m_sprite->setPosition(Vec2(x, y));
-	m_sprite->setAnchorPoint(Vec2(0, 1));
+	m_sprite->setAnchorPoint(Vec2(0.5, 1));
 
 }

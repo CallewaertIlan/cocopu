@@ -76,7 +76,14 @@ void Game::LoadRessources()
             }
             else if (tp[i] == '2') {
                 Entity* dirt = new Entity();
-                dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL);
+                dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL_LEFT);
+                dirt->setAnchorPoint(Vec2(0.5f, 0.5f));
+                m_listObject.push_back(dirt);
+                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
+            }
+            else if (tp[i] == '3') {
+                Entity* dirt = new Entity();
+                dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL_RIGHT);
                 dirt->setAnchorPoint(Vec2(0.5f, 0.5f));
                 m_listObject.push_back(dirt);
                 gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);

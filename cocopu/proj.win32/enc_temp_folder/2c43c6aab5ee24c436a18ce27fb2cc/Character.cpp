@@ -83,7 +83,7 @@ void Character::collision(Entity& entity)
 		m_timeSideCollide = timeGetTime();
 	}
 
-	if (entity.getType() == Entity::DIRT && distance <= 16.0f)
+	if (entity.getType() == Entity::DIRT && distance <= 16.5f)
 	{
 		m_collideDirt = true;
 	}

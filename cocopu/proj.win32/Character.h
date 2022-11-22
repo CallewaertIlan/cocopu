@@ -18,12 +18,16 @@ public:
 
 	void collision(Entity& entity);
 	float getDistance(Entity& entity);
+	float getNextDistance(Entity& entity);
 
 	void problemLoading(const char* filename);
 private:
 	//cocos2d::Sprite* m_sprite;
+	float m_timeSideCollide;
+	float m_time;
 
-	bool m_collideWall;
+	bool m_collideWallRight;
+	bool m_collideWallLeft;
 	bool m_collideDirt;
 	bool m_side_right;
 };
