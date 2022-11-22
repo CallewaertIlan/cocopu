@@ -112,20 +112,10 @@ bool HelloWorld::init()
         auto rotateBy = RotateBy::create(1.0f, 40.0f);
         sprite->runAction(RepeatForever::create(rotateBy));
     }
-    
-    for (int i = 0; i < 10; i++)
-    {
-        for (int j = 0; j < 10; j++)
-        {
-            //Character* character = new Character();
-            //addChild(character, 0);
-            //character->init(WINSIZE_Y / 2.0f + j * 50.0f - 200.0f, WINSIZE_Y / 2.0f + i * 50.0f - 200.0f);
-            //character->scheduleUpdate();
-            //character->addChild(character->getSprite(), 0);
-            //auto rotateBy = RotateBy::create(1.0f, 500.0f);
-            //character->runAction(RepeatForever::create(rotateBy));
-        }
-    }
+
+
+    Controler* controls = Controler::create();
+    addChild(controls);
 
     return true;
 }

@@ -21,4 +21,5 @@ private:
 	vector<Entity*> m_listObject;
 	vector<Character*> m_listCharacter;
 	Layer gameLayer;
+	Controler m_controls;
 };

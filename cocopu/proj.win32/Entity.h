@@ -9,7 +9,6 @@ public:
 		WALL_RIGHT,
 		WALL_LEFT,
 		DOOR_OPEN,
-		DOOR_CLOSED,
 
 	};
 	Entity();
@@ -20,7 +19,7 @@ public:
 
 	void initialisation(float x, float y, int type);
 
-private:
+protected:
 	cocos2d::Sprite* m_sprite;
 	int m_type;
 };

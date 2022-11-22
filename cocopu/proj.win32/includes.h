@@ -15,10 +15,12 @@ using namespace std;
 #include "cocos2d.h"
 USING_NS_CC;
 
+
 #include "Action.h"
 #include "Controler.h"
 #include "Animation.h"
 #include "Entity.h"
+#include "Door.h"
 #include "Character.h"
 #include "HUD.h"
 #include "Game.h"
