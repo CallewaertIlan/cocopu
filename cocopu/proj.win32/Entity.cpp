@@ -32,4 +32,5 @@ void Entity::initialisation(float x, float y, int type)
 	m_sprite->setPosition(Vec2(x, y));
 	m_sprite->setAnchorPoint(Vec2(0.5, 1));
 
+	scheduleUpdate();
 }

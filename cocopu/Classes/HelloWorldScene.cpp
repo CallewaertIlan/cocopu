@@ -114,8 +114,8 @@ bool HelloWorld::init()
     }
 
 
-    Controler* controls = Controler::create();
-    addChild(controls);
+    /*Controler* controls = Controler::create();
+    addChild(controls);*/
 
     return true;
 }

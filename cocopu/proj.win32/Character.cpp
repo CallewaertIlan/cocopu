@@ -17,7 +17,7 @@ Character::~Character()
 {
 }
 
-void Character::init(float x, float y) {
+void Character::initialisation(float x, float y) {
 	setPosition(Vec2(x, y));
 	scheduleUpdate();
 }

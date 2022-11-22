@@ -38,6 +38,7 @@ bool Game::init()
 
     addChild(&gameLayer);
 
+    m_controls.init();
     addChild(&m_controls);
 
     LoadRessources();
@@ -93,15 +94,24 @@ void Game::LoadRessources()
                 gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
             }
             else if (tp[i] == 'D') {
-                Entity* door_open = new Entity();
-                door_open->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DOOR_OPEN);
-                door_open->setAnchorPoint(Vec2(0.5f, 0.5f));
-                m_listObject.push_back(door_open);
+                Door* door_enter = new Door();
+                door_enter->init(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::ENTER);
+                door_enter->setAnchorPoint(Vec2(0.5f, 0.5f));
+                door_enter->scheduleUpdate();
+                m_listObject.push_back(door_enter);
+                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
+            }
+            else if (tp[i] == 'E') {
+                Door* door_exit = new Door();
+                door_exit->init(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::EXIT);
+                door_exit->setAnchorPoint(Vec2(0.5f, 0.5f));
+                m_listObject.push_back(door_exit);
+                door_exit->scheduleUpdate();
                 gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
             }
             else if (tp[i] == 'C') {
                 Character* character = new Character();
-                character->init(i * 32.0f, WINSIZE_Y - (count * 18.0f));
+                character->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f));
                 m_listCharacter.push_back(character);
                 gameLayer.addChild(character);
             }

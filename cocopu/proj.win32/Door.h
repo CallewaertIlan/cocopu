@@ -11,10 +11,14 @@ public:
 	Door();
 	~Door();
 
-	void initialisation(float x, float y, int type);
+	void init(float x, float y, int type);
+
+	void update(float value) override;
 
 private:
 	int m_typeDoor;
-
+	int m_maxSpawn;
+	int m_coutSpawn;
+	float m_timeLastSpawn;
 };
 

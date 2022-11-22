@@ -16,7 +16,7 @@ bool Controler::init()
         return false;
     }
 
-    labelTouchInfo = Label::createWithSystemFont("", "Arial", 30);
+    labelTouchInfo = Label::createWithSystemFont("", "Marker Felt", 30);
 
     labelTouchInfo->setPosition(Vec2(
         Director::getInstance()->getVisibleSize().width / 2,

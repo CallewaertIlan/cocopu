@@ -6,7 +6,7 @@ public:
 	Character();
 	~Character();
 
-	void init(float x, float y);
+	void initialisation(float x, float y);
 
 	//cocos2d::Sprite* getSprite() { return m_sprite; };
 
