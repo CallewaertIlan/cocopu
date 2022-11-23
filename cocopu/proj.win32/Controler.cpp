@@ -34,8 +34,9 @@ bool Controler::init()
 
 bool Controler::onTouchBegan(Touch* touch, Event* event)
 {
-    labelTouchInfo->setPosition(touch->getLocation());
-    labelTouchInfo->setString("You Touched Here");
-    m_touch = touch;
+    Explosion* explo = Explosion::create();
+    explo->initialisation(touch->getLocation().x, touch->getLocation().y);
+    explo->start();
+    getGame()->getLayer().addChild(explo);
     return true;
 }

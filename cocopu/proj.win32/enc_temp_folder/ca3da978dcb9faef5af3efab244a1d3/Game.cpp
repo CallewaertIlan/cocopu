@@ -151,11 +151,10 @@ void Game::addCountSpawn(int value) {
     m_coutSpawn += value;
 }
 
-void Game::setListObject(vector<Entity*> list)
-{
-    m_listObject.clear();
+void Game::setListObject(vector<Entity*> list) {
+
     for (int i = 0; i < list.size(); i++)
     {
-        m_listObject.push_back(list[i]);
+
     }
 }

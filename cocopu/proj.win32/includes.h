@@ -21,7 +21,6 @@ USING_NS_CC;
 #include "Explosion.h"
 #include "Jump.h"
 #include "Block.h"
-#include "Action.h"
 #include "Controler.h"
 #include "Animation.h"
 #include "Entity.h"

@@ -19,16 +19,10 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\Classes\C++</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Source Files\Classes\C++</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Classes\C++</Filter>
     </ClCompile>
     <ClCompile Include="Controler.cpp">
-      <Filter>Source Files\Classes\C++</Filter>
-    </ClCompile>
-    <ClCompile Include="Action.cpp">
       <Filter>Source Files\Classes\C++</Filter>
     </ClCompile>
     <ClCompile Include="HUD.cpp">
@@ -93,16 +87,10 @@
     <ClInclude Include="S:\cocopu\cocopu\Classes\HelloWorldScene.h">
       <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Source Files\Classes\H</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
     <ClInclude Include="Controler.h">
-      <Filter>Source Files\Classes\H</Filter>
-    </ClInclude>
-    <ClInclude Include="Action.h">
       <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
     <ClInclude Include="HUD.h">
@@ -195,6 +183,9 @@
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
     <Image Include="..\Resources\MegamanTileset.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
+    <Image Include="..\Resources\explosion.png">
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
   </ItemGroup>

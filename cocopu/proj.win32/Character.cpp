@@ -32,10 +32,10 @@ void Character::update(float value) {
 void Character::move() {
 	Vec2 movement;
 	if (m_side_right) {
-		movement.x += 3;
+		movement.x += 1;
 	}
 	else{
-		movement.x -= 3;
+		movement.x -= 1;
 	}
 
 	movement.y -= 2;
