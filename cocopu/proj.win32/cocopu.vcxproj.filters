@@ -176,12 +176,6 @@
     <Image Include="..\Resources\PlaySelected.png">
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
-    <Image Include="..\Resources\megaman_tileset_left.png">
-      <Filter>Source Files\Classes\Resources</Filter>
-    </Image>
-    <Image Include="..\Resources\megaman_tileset_right.png">
-      <Filter>Source Files\Classes\Resources</Filter>
-    </Image>
     <Image Include="..\Resources\PlayNormal.png">
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
@@ -192,6 +186,9 @@
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
     <Image Include="..\Resources\Metal.jpg">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
+    <Image Include="..\Resources\MegamanTileset.png">
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
   </ItemGroup>

@@ -8,9 +8,17 @@ public:
 
 	Scene* createScene();
 	virtual bool init();
+
+	vector<Entity*>& getListObject() { return m_listObject; }
+	vector<Character*>& getListCharacter() { return m_listCharacter;}
+	Layer& getLayer() { return gameLayer;}
+	Controler& getControls() { return m_controls;}
+
 	void menuCloseCallback(Ref* pSender);
 
 	void LoadRessources();
+	
+	void addCharacter(float x, float y);
 
 	void update(float) override;
 

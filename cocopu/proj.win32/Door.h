@@ -13,6 +13,7 @@ public:
 
 	void init(float x, float y, int type);
 
+
 	void update(float value) override;
 
 private:

@@ -97,9 +97,9 @@ void Game::LoadRessources()
                 Door* door_enter = new Door();
                 door_enter->init(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::ENTER);
                 door_enter->setAnchorPoint(Vec2(0.5f, 0.5f));
-                door_enter->scheduleUpdate();
                 m_listObject.push_back(door_enter);
                 gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
+                gameLayer.addChild(m_listObject[m_listObject.size() - 1], 0);
             }
             else if (tp[i] == 'E') {
                 Door* door_exit = new Door();
@@ -108,6 +108,7 @@ void Game::LoadRessources()
                 m_listObject.push_back(door_exit);
                 door_exit->scheduleUpdate();
                 gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
+                gameLayer.addChild(m_listObject[m_listObject.size() - 1], 0);
             }
             else if (tp[i] == 'C') {
                 Character* character = new Character();
@@ -126,4 +127,12 @@ void Game::menuCloseCallback(Ref* pSender)
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
 
+}
+
+void Game::addCharacter(float x, float y)
+{
+    Character* character = new Character();
+    character->initialisation(0, 0);
+    m_listCharacter.push_back(character);
+    gameLayer.addChild(character);
 }

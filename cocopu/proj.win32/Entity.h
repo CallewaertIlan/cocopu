@@ -1,6 +1,5 @@
 #pragma once
 
-//class Entity : public cocos2d::Node
 class Entity : public cocos2d::Sprite
 {
 public:

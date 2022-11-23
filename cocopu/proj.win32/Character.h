@@ -13,6 +13,7 @@ public:
 	void update(float) override;
 
 	void move();
+	void animation();
 	
 	void swipSide();
 
@@ -25,6 +26,8 @@ private:
 	//cocos2d::Sprite* m_sprite;
 	float m_timeSideCollide;
 	float m_time;
+	float m_timeLastAnim;
+	float m_rectX;
 
 	bool m_collideWallRight;
 	bool m_collideWallLeft;
