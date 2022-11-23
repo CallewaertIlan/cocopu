@@ -9,6 +9,7 @@ public:
 	void start();
 	void stop();
 	void initialisation(float x, float y);
+	float getDistance(Entity* entity);
 	void animation();
 
 	void Explosion::deleteCollideEntities();

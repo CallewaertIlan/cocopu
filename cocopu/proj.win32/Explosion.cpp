@@ -45,14 +45,38 @@ void Explosion::animation()
 }
 
 void Explosion::deleteCollideEntities() {
+	vector<int> listNumberEntitiesDelete;
 	vector<Entity*> listCopyEntities;
 	vector<Entity*> listEntities = getGame()->getListObject();
+	bool verif = true;
 
 	for (int i = 0; i < listEntities.size(); i++)
 	{
-		if (listEntities[i]) {
-			listCopyEntities.push_back(listEntities[i]);
+		if (getDistance(listEntities[i]) <= 60.0f) {
+			listNumberEntitiesDelete.push_back(i);
+			getGame()->getListObject()[i]->setOpacity(0);
 		}
 	}
 
+	for (int i = 0; i < listEntities.size(); i++)
+	{
+		for (int j = 0; j < listNumberEntitiesDelete.size(); j++)
+		{
+			if (i == listNumberEntitiesDelete[j]) {
+				verif = false;
+			}
+		}
+		if (verif) {
+			listCopyEntities.push_back(listEntities[i]);
+		}
+		else {
+			verif = true;
+		}
+	}
+
+	getGame()->setListObject(listCopyEntities);
+}
+
+float Explosion::getDistance(Entity* entity) {
+	return sqrt(pow(entity->getPosition().x - getPosition().x, 2) + pow(entity->getPosition().y - getPosition().y, 2));
 }

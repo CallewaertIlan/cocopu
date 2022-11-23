@@ -34,7 +34,10 @@ bool Game::init()
         this->addChild(label, 1);
     }
     
+    HUD* hud = HUD::create();
+    hud->initialisation();
 
+    addChild(hud);
 
     addChild(&m_gameLayer);
 

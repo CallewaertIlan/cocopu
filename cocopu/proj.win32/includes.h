@@ -12,19 +12,20 @@ using namespace std;
 #include <iomanip>
 #include <fstream>
 
+#include "ui/CocosGUI.h"
 #include "cocos2d.h"
 USING_NS_CC;
 
 #include "Global.h"
 #include "Dig.h"
 #include "Mine.h"
-#include "Explosion.h"
 #include "Jump.h"
 #include "Block.h"
 #include "Controler.h"
 #include "Animation.h"
 #include "Entity.h"
 #include "Character.h"
+#include "Explosion.h"
 #include "Door.h"
 #include "HUD.h"
 #include "Game.h"
