@@ -13,7 +13,6 @@ Door::~Door()
 
 void Door::init(float x, float y, int type) {
 	m_typeDoor = type;
-
 	m_type = Entity::DOOR_OPEN;
 	m_sprite = Sprite::create("door_open.png");
 	m_sprite->setPosition(Vec2(x, y));
@@ -23,13 +22,16 @@ void Door::init(float x, float y, int type) {
 }
 
 void Door::update(float value) {
-	int test = 0;
+	float time = timeGetTime();
 	if (m_typeDoor == Door::ENTER) {
-		if (m_maxSpawn > m_coutSpawn && m_timeLastSpawn + 50000.0f > timeGetTime()) {
+		if (m_maxSpawn > m_coutSpawn && m_timeLastSpawn + 1000.0f < timeGetTime()) {
 			m_coutSpawn++;
 			m_timeLastSpawn = timeGetTime();
+
 			Character* character = new Character();
 			character->initialisation(m_sprite->getPosition().x, m_sprite->getPosition().y);
+			//m_game->getListCharacter().push_back(character);
+			addChild(character);
 		}
 	}
 }

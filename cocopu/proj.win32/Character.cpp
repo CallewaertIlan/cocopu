@@ -2,15 +2,18 @@
 
 Character::Character()
 {
-	setTexture("lemming.png");
+	m_rectX = 0.0f;
+	setTexture("MegamanTileset.png");
+	setTextureRect(Rect(m_rectX, 90.0f, 35.0f, 40.0f));
 	setPosition(Vec2(WINSIZE_X / 2.0f, WINSIZE_Y / 2.0f));
-	setAnchorPoint(Vec2(0.5, 0));
+	setAnchorPoint(Vec2(0.5f, 0.0f));
 
 	m_collideWallRight = false;
 	m_collideWallLeft = false;
 	m_collideDirt = false;
 	m_side_right = true;
 	m_timeSideCollide = 0.0f;
+	m_timeLastAnim = 0.0f;
 }
 
 Character::~Character()
@@ -59,6 +62,9 @@ void Character::move() {
 	//runAction(moveBy);
 
 	setPosition(getPosition().x + movement.x, getPosition().y + movement.y);
+
+	if (m_time > m_timeLastAnim + 100.0f && movement.y == 0.0f)
+		animation();
 }
 
 void Character::problemLoading(const char* filename)
@@ -115,4 +121,14 @@ void Character::swipSide()
 		m_side_right = true;
 		//stopAllActions();
 	}
+}
+
+void Character::animation()
+{
+	m_rectX += 40.0f;
+	if (m_rectX > 80.0f) {
+		m_rectX = 0.0f;
+	}
+	setTextureRect(Rect(m_rectX, 90.0f, 35.0f, 40.0f));
+	m_timeLastAnim = m_time;
 }
