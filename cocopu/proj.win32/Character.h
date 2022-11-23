@@ -1,14 +1,12 @@
 #pragma once
 
-class Character : public cocos2d::Sprite
+class Character : public Entity
 {
 public:
 	Character();
 	~Character();
 
 	void initialisation(float x, float y);
-
-	//cocos2d::Sprite* getSprite() { return m_sprite; };
 
 	void update(float) override;
 
@@ -23,7 +21,6 @@ public:
 
 	void problemLoading(const char* filename);
 private:
-	//cocos2d::Sprite* m_sprite;
 	float m_timeSideCollide;
 	float m_time;
 	float m_timeLastAnim;
