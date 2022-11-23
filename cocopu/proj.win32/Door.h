@@ -21,8 +21,6 @@ public:
 
 private:
 	int m_typeDoor;
-	int m_maxSpawn;
-	int m_coutSpawn;
 	float m_timeLastSpawn;
 };
 

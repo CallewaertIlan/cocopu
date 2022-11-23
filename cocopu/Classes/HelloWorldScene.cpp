@@ -3,6 +3,7 @@
 #include "../../proj.win32/includes.h"
 
 USING_NS_CC;
+Game* g_pGame;
 
 Scene* HelloWorld::createScene()
 {
@@ -129,8 +130,9 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::menuPlayCallback(Ref* pSender) {
     // create a scene. it's an autorelease object
-    auto game = new Game;
-    auto gameScene = game->createScene();
+   // Game* game = new Game;
+    Scene* gameScene = Game::create();
+    g_pGame = (Game*)gameScene;
 
     Director::getInstance()->replaceScene(gameScene);
     //Director::getInstance()->runWithScene(gameScene);

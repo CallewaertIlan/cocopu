@@ -20,6 +20,9 @@ public:
 	float getNextDistance(Entity& entity);
 
 	void problemLoading(const char* filename);
+
+	// implement the "static create()" method manually
+	CREATE_FUNC(Character);
 private:
 	float m_timeSideCollide;
 	float m_time;

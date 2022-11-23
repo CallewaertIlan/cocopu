@@ -3,11 +3,6 @@
 Character::Character()
 {
 	m_rectX = 0.0f;
-	setTexture("MegamanTileset.png");
-	setTextureRect(Rect(m_rectX, 90.0f, 35.0f, 40.0f));
-	setPosition(Vec2(WINSIZE_X / 2.0f, WINSIZE_Y / 2.0f));
-	setAnchorPoint(Vec2(0.5f, 0.0f));
-
 	m_collideWallRight = false;
 	m_collideWallLeft = false;
 	m_collideDirt = false;
@@ -21,7 +16,10 @@ Character::~Character()
 }
 
 void Character::initialisation(float x, float y) {
+	setTexture("MegamanTileset.png");
+	setTextureRect(Rect(m_rectX, 90.0f, 35.0f, 40.0f));
 	setPosition(Vec2(x, y));
+	setAnchorPoint(Vec2(0.5f, 0.0f));
 	scheduleUpdate();
 }
 
@@ -40,7 +38,7 @@ void Character::move() {
 		movement.x -= 3;
 	}
 
-	movement.y -= 3;
+	movement.y -= 2;
 
 
 	if (m_collideWallRight && movement.x > 0.0f) {
@@ -78,12 +76,12 @@ void Character::collision(Entity& entity)
 	float distance = getDistance(entity);
 	float nextDistance = getNextDistance(entity);
 
-	if (entity.getType() == Entity::WALL_RIGHT && distance <= 32.5 && m_side_right) {
+	if (entity.getType() == Entity::WALL_RIGHT && distance <= 27 && m_side_right) {
 		swipSide();
 		m_collideWallRight = true;
 		m_timeSideCollide = timeGetTime();
 	}
-	else if (entity.getType() == Entity::WALL_LEFT && distance <= 34.5 && !m_side_right) {
+	else if (entity.getType() == Entity::WALL_LEFT && distance <= 50 && !m_side_right) {
 		swipSide();
 		m_collideWallLeft = true;
 		m_timeSideCollide = timeGetTime();

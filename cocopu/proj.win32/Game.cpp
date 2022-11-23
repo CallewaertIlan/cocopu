@@ -1,10 +1,5 @@
 #include "includes.h"
 
-Scene* Game::createScene()
-{
-    return Game::create();
-}
-
 Game::Game()
 {
 }
@@ -15,6 +10,11 @@ Game::~Game()
 
 bool Game::init()
 {
+    m_countExit = 0;
+    m_countDeath = 0;
+    m_coutSpawn = 0;
+    m_maxSpawn = 10;
+
     if (!Scene::init())
     {
         return false;
@@ -36,7 +36,7 @@ bool Game::init()
     
 
 
-    addChild(&gameLayer);
+    addChild(&m_gameLayer);
 
     m_controls.init();
     addChild(&m_controls);
@@ -75,42 +75,36 @@ void Game::LoadRessources()
             if (tp[i] == '1') {
                 Entity* dirt = Entity::create();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DIRT);
+                m_gameLayer.addChild(dirt, 0);
                 dirt->setAnchorPoint(Vec2(0.5, 1));
                 m_listObject.push_back(dirt);
-                gameLayer.addChild(dirt, 0);
             }
             else if (tp[i] == '2') {
                 Entity* dirt = Entity::create();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL_LEFT);
+                m_gameLayer.addChild(dirt, 0);
                 dirt->setAnchorPoint(Vec2(0.5, 1));
                 m_listObject.push_back(dirt);
-                gameLayer.addChild(dirt, 0);
             }
             else if (tp[i] == '3') {
                 Entity* dirt = Entity::create();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL_RIGHT);
+                m_gameLayer.addChild(dirt, 0);
                 dirt->setAnchorPoint(Vec2(0.5, 1));
                 m_listObject.push_back(dirt);
-                gameLayer.addChild(dirt, 0);
             }
             else if (tp[i] == 'D') {
                 Door* door_enter = Door::create();
                 door_enter->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::ENTER);
                 m_listObject.push_back(door_enter);
-                gameLayer.addChild(door_enter, 0);
+                m_gameLayer.addChild(door_enter, 0);
             }
             else if (tp[i] == 'E') {
                 Door* door_exit = Door::create();
                 door_exit->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::EXIT);
                 m_listObject.push_back(door_exit);
                 door_exit->scheduleUpdate();
-                gameLayer.addChild(door_exit, 0);
-            }
-            else if (tp[i] == 'C') {
-                Character* character = new Character();
-                character->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f));
-                m_listCharacter.push_back(character);
-                gameLayer.addChild(character);
+                m_gameLayer.addChild(door_exit, 0);
             }
         }
         count++;
@@ -130,5 +124,30 @@ void Game::addCharacter(float x, float y)
     Character* character = new Character();
     character->initialisation(0, 0);
     m_listCharacter.push_back(character);
-    gameLayer.addChild(character);
+    m_gameLayer.addChild(character);
 }
+
+void Game::setCountExit(int value) {
+    m_countExit = value;
+}
+
+void Game::setCountDeath(int value) {
+    m_countDeath = value;
+}
+
+void Game::setCountSpawn(int value) {
+    m_coutSpawn = value;
+}
+
+void Game::addCountExit(int value) {
+    m_countExit += value;
+}
+
+void Game::addCountDeath(int value) {
+    m_countDeath += value;
+}
+
+void Game::addCountSpawn(int value) {
+    m_coutSpawn += value;
+}
+

@@ -15,6 +15,7 @@ using namespace std;
 #include "cocos2d.h"
 USING_NS_CC;
 
+#include "Global.h"
 #include "Dig.h"
 #include "Mine.h"
 #include "Explosion.h"
