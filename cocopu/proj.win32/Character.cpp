@@ -97,7 +97,7 @@ void Character::collision(Entity& entity)
 
 float Character::getDistance(Entity& entity)
 {
-	return sqrt(pow(entity.getSprite()->getPosition().x - getPosition().x, 2) + pow(entity.getSprite()->getPosition().y - getPosition().y, 2));
+	return sqrt(pow(entity.getPosition().x - getPosition().x, 2) + pow(entity.getPosition().y - getPosition().y, 2));
 }
 
 float Character::getNextDistance(Entity& entity)
@@ -107,7 +107,7 @@ float Character::getNextDistance(Entity& entity)
 		add = 3;
 	else
 		add = -3;
-	float result = sqrt(pow(entity.getSprite()->getPosition().x + add - getPosition().x, 2) + pow(entity.getSprite()->getPosition().y - getPosition().y, 2));
+	float result = sqrt(pow(entity.getPosition().x + add - getPosition().x, 2) + pow(entity.getPosition().y - getPosition().y, 2));
 	return result;
 }
 
@@ -115,10 +115,12 @@ void Character::swipSide()
 {
 	if (m_side_right) {
 		m_side_right = false;
+		setFlippedX(true);
 		//stopAllActions();
 	}
 	else {
 		m_side_right = true;
+		setFlippedX(false);
 		//stopAllActions();
 	}
 }

@@ -11,12 +11,12 @@ Door::~Door()
 {
 }
 
-void Door::init(float x, float y, int type) {
+void Door::initialisation(float x, float y, int type) {
 	m_typeDoor = type;
 	m_type = Entity::DOOR_OPEN;
-	m_sprite = Sprite::create("door_open.png");
-	m_sprite->setPosition(Vec2(x, y));
-	m_sprite->setAnchorPoint(Vec2(0.5, 1));
+	setTexture("door_open.png");
+	setPosition(Vec2(x, y));
+	setAnchorPoint(Vec2(0.5, 1));
 
 	scheduleUpdate();
 }
@@ -28,8 +28,12 @@ void Door::update(float value) {
 			m_coutSpawn++;
 			m_timeLastSpawn = timeGetTime();
 
+			float x = getPosition().x;
+			float y = getPosition().y;
+
 			Character* character = new Character();
-			character->initialisation(m_sprite->getPosition().x, m_sprite->getPosition().y);
+			//character->initialisation(getPosition().x, getPosition().y);
+			character->initialisation(0, 40);
 			//m_game->getListCharacter().push_back(character);
 			addChild(character);
 		}

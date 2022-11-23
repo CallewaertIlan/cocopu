@@ -11,10 +11,13 @@ public:
 	Door();
 	~Door();
 
-	void init(float x, float y, int type);
+	void initialisation(float x, float y, int type);
 
 
 	void update(float value) override;
+
+	// implement the "static create()" method manually
+	CREATE_FUNC(Door);
 
 private:
 	int m_typeDoor;

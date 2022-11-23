@@ -73,42 +73,38 @@ void Game::LoadRessources()
         for (int i = 0; i < tp.size(); i++)
         {
             if (tp[i] == '1') {
-                Entity* dirt = new Entity();
+                Entity* dirt = Entity::create();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DIRT);
-                dirt->setAnchorPoint(Vec2(0.5f, 0.5f));
+                dirt->setAnchorPoint(Vec2(0.5, 1));
                 m_listObject.push_back(dirt);
-                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
+                gameLayer.addChild(dirt, 0);
             }
             else if (tp[i] == '2') {
-                Entity* dirt = new Entity();
+                Entity* dirt = Entity::create();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL_LEFT);
-                dirt->setAnchorPoint(Vec2(0.5f, 0.5f));
+                dirt->setAnchorPoint(Vec2(0.5, 1));
                 m_listObject.push_back(dirt);
-                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
+                gameLayer.addChild(dirt, 0);
             }
             else if (tp[i] == '3') {
-                Entity* dirt = new Entity();
+                Entity* dirt = Entity::create();
                 dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL_RIGHT);
-                dirt->setAnchorPoint(Vec2(0.5f, 0.5f));
+                dirt->setAnchorPoint(Vec2(0.5, 1));
                 m_listObject.push_back(dirt);
-                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
+                gameLayer.addChild(dirt, 0);
             }
             else if (tp[i] == 'D') {
-                Door* door_enter = new Door();
-                door_enter->init(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::ENTER);
-                door_enter->setAnchorPoint(Vec2(0.5f, 0.5f));
+                Door* door_enter = Door::create();
+                door_enter->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::ENTER);
                 m_listObject.push_back(door_enter);
-                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
-                gameLayer.addChild(m_listObject[m_listObject.size() - 1], 0);
+                gameLayer.addChild(door_enter, 0);
             }
             else if (tp[i] == 'E') {
-                Door* door_exit = new Door();
-                door_exit->init(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::EXIT);
-                door_exit->setAnchorPoint(Vec2(0.5f, 0.5f));
+                Door* door_exit = Door::create();
+                door_exit->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::EXIT);
                 m_listObject.push_back(door_exit);
                 door_exit->scheduleUpdate();
-                gameLayer.addChild(m_listObject[m_listObject.size() - 1]->getSprite(), 0);
-                gameLayer.addChild(m_listObject[m_listObject.size() - 1], 0);
+                gameLayer.addChild(door_exit, 0);
             }
             else if (tp[i] == 'C') {
                 Character* character = new Character();
