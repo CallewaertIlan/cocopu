@@ -15,7 +15,11 @@ using namespace std;
 #include "cocos2d.h"
 USING_NS_CC;
 
-
+#include "Dig.h"
+#include "Mine.h"
+#include "Explosion.h"
+#include "Jump.h"
+#include "Block.h"
 #include "Action.h"
 #include "Controler.h"
 #include "Animation.h"

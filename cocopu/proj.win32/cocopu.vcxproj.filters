@@ -37,6 +37,21 @@
     <ClCompile Include="Door.cpp">
       <Filter>Source Files\Classes\C++</Filter>
     </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Dig.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Mine.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="S:\cocopu\cocopu\proj.win32\main.h">
@@ -94,6 +109,21 @@
       <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
     <ClInclude Include="Door.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Jump.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Dig.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Mine.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
       <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
   </ItemGroup>
