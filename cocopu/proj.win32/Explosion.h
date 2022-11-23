@@ -12,7 +12,7 @@ public:
 	float getDistance(Entity* entity);
 	void animation();
 
-	void Explosion::deleteCollideEntities();
+	void deleteCollideEntities();
 
 	CREATE_FUNC(Explosion);
 
