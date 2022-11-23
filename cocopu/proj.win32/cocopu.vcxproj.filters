@@ -194,5 +194,8 @@
     <Image Include="..\Resources\explosion.png">
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
+    <Image Include="..\Resources\test.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>

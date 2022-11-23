@@ -11,6 +11,11 @@ public:
 	void setHeight(float height);
 	void setWidth(float width);
 
+	void addX(float x);
+	void addY(float y);
+	void addHeight(float height);
+	void addWidth(float width);
+
 	float getX() { return m_x; };
 	float getY() { return m_y; };
 	float getHeight() { return m_height; };

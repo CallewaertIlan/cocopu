@@ -21,10 +21,11 @@ void Character::initialisation(float x, float y) {
 	setPosition(Vec2(x, y));
 	setAnchorPoint(Vec2(0.5f, 0.0f));
 
-	m_hitboxLeft->initialisation(x - getContentSize().width / 2.0f - 1.0f, y + getContentSize().height, 1.0f, getContentSize().height);
-	m_hitboxRight->initialisation(x + getContentSize().width / 2.0f, y + getContentSize().height, 1.0f, getContentSize().height);
-	m_hitboxBottom->initialisation(x - getContentSize().width / 2.0f, y, getContentSize().width, 1.0f);
-	m_hitboxTop->initialisation(x - getContentSize().width / 2.0f, y + getContentSize().height + 1.0f, getContentSize().width, 1.0f);
+	m_hitboxLeft.initialisation(x - getContentSize().width / 2.0f - 1.0f, y + getContentSize().height / 2.0f, 1.0f, getContentSize().height);
+	m_hitboxRight.initialisation(x + getContentSize().width / 2.0f, y + getContentSize().height / 2.0f, 1.0f, getContentSize().height);
+	m_hitboxBottom.initialisation(x, y, getContentSize().width, 1.0f);
+	m_hitboxTop.initialisation(x, y + getContentSize().height + 1.0f, getContentSize().width, 1.0f);
+
 
 	scheduleUpdate();
 }
@@ -65,6 +66,16 @@ void Character::move() {
 	//auto moveBy = MoveBy::create(1, movement);
 	//runAction(moveBy);
 
+	m_hitboxLeft.addX(movement.x);
+	m_hitboxRight.addX(movement.x);
+	m_hitboxBottom.addX(movement.x);
+	m_hitboxTop.addX(movement.x);
+
+	m_hitboxLeft.addY(movement.y);
+	m_hitboxRight.addY(movement.y);
+	m_hitboxBottom.addY(movement.y);
+	m_hitboxTop.addY(movement.y);
+
 	setPosition(getPosition().x + movement.x, getPosition().y + movement.y);
 
 	if (m_time > m_timeLastAnim + 100.0f && movement.y == 0.0f)
@@ -77,61 +88,61 @@ void Character::problemLoading(const char* filename)
 	printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
 }
 
-void Character::collision(Entity& entity)
-{
-	float distance = getDistance(entity);
-	float nextDistance = getNextDistance(entity);
-
-	//if (entity.getType() == Entity::WALL_RIGHT && distance <= 27 && m_side_right) {
-	//	swipSide();
-	//	m_collideWallRight = true;
-	//	m_timeSideCollide = timeGetTime();
-	//}
-	//else if (entity.getType() == Entity::WALL_LEFT && distance <= 50 && !m_side_right) {
-	//	swipSide();
-	//	m_collideWallLeft = true;
-	//	m_timeSideCollide = timeGetTime();
-	//}
-
-	if (entity.getType() == Entity::DIRT && distance <= 16.0f)
-	{
-		m_collideDirt = true;
-	}
-
-	if (entity.getType() == Entity::DOOR_EXIT && distance <= 60.0f)
-	{
-		unscheduleUpdate();
-		setOpacity(0);
-		//getGame()->getLayer().removeChild(this, true);
-	}
-}
-
 //void Character::collision(Entity& entity)
 //{
-//	if (entity.getType() == Entity::DIRT)
-//	{
-//		if (m_hitboxBottom->intersect(entity.getHitbox()))
-//			m_collideDirt = true;
-//		if (m_hitboxLeft->intersect(entity.getHitbox()))
-//		{
-//			swipSide();
-//			m_collideWallLeft = true;
-//			m_timeSideCollide = timeGetTime();
-//		}
-//		if (m_hitboxRight->intersect(entity.getHitbox()))
-//		{
-//			swipSide();
-//			m_collideWallRight = true;
-//			m_timeSideCollide = timeGetTime();
-//		}
+//	float distance = getDistance(entity);
+//	float nextDistance = getNextDistance(entity);
+//
+//	if (entity.getType() == Entity::WALL_RIGHT && distance <= 27 && m_side_right) {
+//		swipSide();
+//		m_collideWallRight = true;
+//		m_timeSideCollide = timeGetTime();
+//	}
+//	else if (entity.getType() == Entity::WALL_LEFT && distance <= 50 && !m_side_right) {
+//		swipSide();
+//		m_collideWallLeft = true;
+//		m_timeSideCollide = timeGetTime();
 //	}
 //
-//	if (entity.getType() == Entity::DOOR_EXIT && m_hitboxBottom->intersect(entity.getHitbox()))
+//	if (entity.getType() == Entity::DIRT && distance <= 16.0f)
+//	{
+//		m_collideDirt = true;
+//	}
+//
+//	if (entity.getType() == Entity::DOOR_EXIT && distance <= 60.0f)
 //	{
 //		unscheduleUpdate();
 //		setOpacity(0);
+//		//getGame()->getLayer().removeChild(this, true);
 //	}
 //}
+
+void Character::collision(Entity& entity)
+{
+	if (entity.getType() == Entity::DIRT)
+	{
+		if (m_hitboxBottom.intersect(entity.getHitbox()))
+			m_collideDirt = true;
+		if (m_hitboxLeft.intersect(entity.getHitbox()))
+		{
+			swipSide();
+			m_collideWallLeft = true;
+			m_timeSideCollide = timeGetTime();
+		}
+		if (m_hitboxRight.intersect(entity.getHitbox()))
+		{
+			swipSide();
+			m_collideWallRight = true;
+			m_timeSideCollide = timeGetTime();
+		}
+	}
+
+	if (entity.getType() == Entity::DOOR_EXIT && m_hitboxBottom.intersect(entity.getHitbox()))
+	{
+		unscheduleUpdate();
+		setOpacity(0);
+	}
+}
 
 float Character::getDistance(Entity& entity)
 {

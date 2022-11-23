@@ -14,10 +14,10 @@ Hitbox::~Hitbox()
 
 void Hitbox::initialisation(float x, float y, float width, float height)
 {
-	//m_x = x;
-	//m_y = y;
-	//m_height = height;
-	//m_width = width;
+	setX(x);
+	setY(y);
+	setHeight(height);
+	setWidth(width);
 }
 
 void Hitbox::setX(float x)
@@ -48,4 +48,20 @@ bool Hitbox::intersect(Hitbox* hitbox)
 	float minTop = min(hitbox->getY() + hitbox->getHeight(), m_y + m_height);
 
 	return (maxLeft < minRight) && (maxBottom < minTop);
+}
+
+void Hitbox::addX(float x) {
+	m_x += x;
+}
+
+void Hitbox::addY(float y) {
+	m_y += y;
+}
+
+void Hitbox::addHeight(float height) {
+	m_height += height;
+}
+
+void Hitbox::addWidth(float width) {
+	m_width += width;
 }
