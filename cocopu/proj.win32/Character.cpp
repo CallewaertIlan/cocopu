@@ -88,35 +88,6 @@ void Character::problemLoading(const char* filename)
 	printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
 }
 
-//void Character::collision(Entity& entity)
-//{
-//	float distance = getDistance(entity);
-//	float nextDistance = getNextDistance(entity);
-//
-//	if (entity.getType() == Entity::WALL_RIGHT && distance <= 27 && m_side_right) {
-//		swipSide();
-//		m_collideWallRight = true;
-//		m_timeSideCollide = timeGetTime();
-//	}
-//	else if (entity.getType() == Entity::WALL_LEFT && distance <= 50 && !m_side_right) {
-//		swipSide();
-//		m_collideWallLeft = true;
-//		m_timeSideCollide = timeGetTime();
-//	}
-//
-//	if (entity.getType() == Entity::DIRT && distance <= 16.0f)
-//	{
-//		m_collideDirt = true;
-//	}
-//
-//	if (entity.getType() == Entity::DOOR_EXIT && distance <= 60.0f)
-//	{
-//		unscheduleUpdate();
-//		setOpacity(0);
-//		//getGame()->getLayer().removeChild(this, true);
-//	}
-//}
-
 void Character::collision(Entity& entity)
 {
 	if (entity.getType() == Entity::DIRT)

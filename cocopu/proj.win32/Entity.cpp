@@ -27,11 +27,7 @@ void Entity::initialisation(float x, float y, int type)
 		break;
 	}
 	setPosition(Vec2(x, y));
-	m_hitbox.initialisation(getPosition().x, getPosition().y, 32.0f, 18.0f);
-
-	Sprite* sprite = Sprite::create("test.png");
-	sprite->setPosition(0, 0);
-	addChild(sprite);
+	m_hitbox.initialisation(getPosition().x - getContentSize().width / 2.0f, getPosition().y - getContentSize().height , 32.0f, 18.0f);
 
 	setAnchorPoint(Vec2(0, 1));
 
