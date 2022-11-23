@@ -132,3 +132,8 @@ void HUD::createExplosionButton(float x, float y)
 
     addChild(button);
 }
+
+void HUD::createText(float x, float y)
+{
+
+}

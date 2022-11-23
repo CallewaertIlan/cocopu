@@ -11,6 +11,7 @@ public:
 	void createExplosionButton(float x, float y);
 	void createDigButton(float x, float y);
 	void createGlideButton(float x, float y);
+	void createText(float x, float y);
 	CREATE_FUNC(HUD);
 private:
 	float m_time;

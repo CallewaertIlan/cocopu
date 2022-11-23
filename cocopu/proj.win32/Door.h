@@ -12,7 +12,7 @@ public:
 	~Door();
 
 	void initialisation(float x, float y, int type);
-
+	int getDoorType() { return m_typeDoor; };
 
 	void update(float value) override;
 
