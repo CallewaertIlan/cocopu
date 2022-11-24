@@ -7,7 +7,7 @@ public:
 
 	void initialisation(float x, float y);
 
-	void start();
+	void start(Entity& entity);
 
 	void stop();
 
