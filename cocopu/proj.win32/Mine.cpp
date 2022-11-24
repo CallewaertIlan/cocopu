@@ -19,7 +19,7 @@ void Mine::initialisation(float x, float y)
 void Mine::start(Entity& entity)
 {
 
-	if (entity.getType() == Entity::WALL_LEFT || Entity::WALL_RIGHT)
+	/*if (entity.getType() == Entity::WALL_LEFT || Entity::WALL_RIGHT)
 	{
 		Vec2 movement;
 		if (m_side_right) {
@@ -40,7 +40,7 @@ void Mine::start(Entity& entity)
 	}
 	
 
-	scheduleUpdate();
+	scheduleUpdate();*/
 }
 
 void Mine::stop()

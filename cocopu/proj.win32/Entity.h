@@ -6,16 +6,15 @@ public:
 	enum type
 	{
 		DIRT = 0,
-		WALL_RIGHT,
-		WALL_LEFT,
-		DOOR_OPEN,
+		DOOR_ENTER,
+		DOOR_EXIT,
 
 	};
 	Entity();
 	~Entity();
 
+	Hitbox* getHitbox() { return &m_hitbox; };
 	int getType() { return m_type; };
-	//cocos2d::Sprite* getSprite() { return m_sprite; };
 
 	void initialisation(float x, float y, int type);
 
@@ -23,6 +22,6 @@ public:
 	CREATE_FUNC(Entity);
 
 protected:
-	//cocos2d::Sprite* m_sprite;
+	Hitbox m_hitbox;
 	int m_type;
 };

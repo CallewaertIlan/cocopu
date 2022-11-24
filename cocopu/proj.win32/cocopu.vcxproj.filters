@@ -49,6 +49,9 @@
     <ClCompile Include="Global.cpp">
       <Filter>Source Files\Classes\C++</Filter>
     </ClCompile>
+    <ClCompile Include="Hitbox.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="S:\cocopu\cocopu\proj.win32\main.h">
@@ -120,6 +123,9 @@
     <ClInclude Include="Global.h">
       <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
+    <ClInclude Include="Hitbox.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="S:\cocopu\cocopu\CMakeLists.txt" />
@@ -188,7 +194,11 @@
     <Image Include="..\Resources\explosion.png">
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
+<<<<<<< HEAD
     <Image Include="..\Resources\pioche.png">
+=======
+    <Image Include="..\Resources\test.png">
+>>>>>>> 6eb765e1292e9259520e35f60fa88cf560a13099
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
   </ItemGroup>

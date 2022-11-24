@@ -78,34 +78,20 @@ void Game::LoadRessources()
         {
             if (tp[i] == '1') {
                 Entity* dirt = Entity::create();
-                dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::DIRT);
-                m_gameLayer.addChild(dirt, 0);
-                dirt->setAnchorPoint(Vec2(0.5, 1));
-                m_listObject.push_back(dirt);
-            }
-            else if (tp[i] == '2') {
-                Entity* dirt = Entity::create();
-                dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL_LEFT);
-                m_gameLayer.addChild(dirt, 0);
-                dirt->setAnchorPoint(Vec2(0.5, 1));
-                m_listObject.push_back(dirt);
-            }
-            else if (tp[i] == '3') {
-                Entity* dirt = Entity::create();
-                dirt->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Entity::WALL_RIGHT);
+                dirt->initialisation(i * 32.0f + 32.0f / 2.0f, WINSIZE_Y - (count * 18.0f), Entity::DIRT);
                 m_gameLayer.addChild(dirt, 0);
                 dirt->setAnchorPoint(Vec2(0.5, 1));
                 m_listObject.push_back(dirt);
             }
             else if (tp[i] == 'D') {
                 Door* door_enter = Door::create();
-                door_enter->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::ENTER);
+                door_enter->initialisation(i * 32.0f + 32.0f / 2.0f, WINSIZE_Y - (count * 18.0f), Door::ENTER);
                 m_listObject.push_back(door_enter);
                 m_gameLayer.addChild(door_enter, 0);
             }
             else if (tp[i] == 'E') {
                 Door* door_exit = Door::create();
-                door_exit->initialisation(i * 32.0f, WINSIZE_Y - (count * 18.0f), Door::EXIT);
+                door_exit->initialisation(i * 32.0f + 32.0f / 2.0f, WINSIZE_Y - (count * 18.0f), Door::EXIT);
                 m_listObject.push_back(door_exit);
                 door_exit->scheduleUpdate();
                 m_gameLayer.addChild(door_exit, 0);

@@ -11,7 +11,10 @@ Door::~Door()
 
 void Door::initialisation(float x, float y, int type) {
 	m_typeDoor = type;
-	m_type = Entity::DOOR_OPEN;
+	if (type == Door::ENTER)
+		m_type = Entity::DOOR_ENTER;
+	else if (type == Door::EXIT)
+		m_type = Entity::DOOR_EXIT;
 	setTexture("door_open.png");
 	setPosition(Vec2(x, y));
 	setAnchorPoint(Vec2(0.5, 1));

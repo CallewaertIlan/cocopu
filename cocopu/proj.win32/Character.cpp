@@ -20,6 +20,13 @@ void Character::initialisation(float x, float y) {
 	setTextureRect(Rect(m_rectX, 90.0f, 35.0f, 40.0f));
 	setPosition(Vec2(x, y));
 	setAnchorPoint(Vec2(0.5f, 0.0f));
+
+	m_hitboxLeft.initialisation(x - getContentSize().width / 2.0f - 1.0f, y + getContentSize().height / 2.0f, 1.0f, getContentSize().height);
+	m_hitboxRight.initialisation(x + getContentSize().width / 2.0f, y + getContentSize().height / 2.0f, 1.0f, getContentSize().height);
+	m_hitboxBottom.initialisation(x, y, getContentSize().width, 1.0f);
+	m_hitboxTop.initialisation(x, y + getContentSize().height + 1.0f, getContentSize().width, 1.0f);
+
+
 	scheduleUpdate();
 }
 
@@ -59,6 +66,16 @@ void Character::move() {
 	//auto moveBy = MoveBy::create(1, movement);
 	//runAction(moveBy);
 
+	m_hitboxLeft.addX(movement.x);
+	m_hitboxRight.addX(movement.x);
+	m_hitboxBottom.addX(movement.x);
+	m_hitboxTop.addX(movement.x);
+
+	m_hitboxLeft.addY(movement.y);
+	m_hitboxRight.addY(movement.y);
+	m_hitboxBottom.addY(movement.y);
+	m_hitboxTop.addY(movement.y); 
+
 	setPosition(getPosition().x + movement.x, getPosition().y + movement.y);
 
 	if (m_time > m_timeLastAnim + 100.0f && movement.y == 0.0f)
@@ -73,25 +90,30 @@ void Character::problemLoading(const char* filename)
 
 void Character::collision(Entity& entity)
 {
-	float distance = getDistance(entity);
-	float nextDistance = getNextDistance(entity);
-
-	if (entity.getType() == Entity::WALL_RIGHT && distance <= 27 && m_side_right) {
-		swipSide();
-		m_collideWallRight = true;
-		m_timeSideCollide = timeGetTime();
-	}
-	else if (entity.getType() == Entity::WALL_LEFT && distance <= 50 && !m_side_right) {
-		swipSide();
-		m_collideWallLeft = true;
-		m_timeSideCollide = timeGetTime();
-	}
-
-	if (entity.getType() == Entity::DIRT && distance <= 16.0f)
+	if (entity.getType() == Entity::DIRT)
 	{
-		m_collideDirt = true;
+		if (m_hitboxBottom.intersect(entity.getHitbox()))
+			m_collideDirt = true;
+		if (m_hitboxLeft.intersect(entity.getHitbox()))
+		{
+			swipSide();
+			m_collideWallLeft = true;
+			m_timeSideCollide = timeGetTime();
+		}
+		if (m_hitboxRight.intersect(entity.getHitbox()))
+		{
+			swipSide();
+			m_collideWallRight = true;
+			m_timeSideCollide = timeGetTime();
+		}
 	}
-}
+
+	if (entity.getType() == Entity::DOOR_EXIT && m_hitboxBottom.intersect(entity.getHitbox()))
+	{
+		unscheduleUpdate();
+		setOpacity(0);
+	}
+} 
 
 float Character::getDistance(Entity& entity)
 {

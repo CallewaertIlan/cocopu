@@ -818,6 +818,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="Hitbox.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="Jump.h" />
@@ -835,6 +836,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Global.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="Mine.cpp" />
@@ -924,6 +926,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <Image Include="..\Resources\pioche.png" />
     <Image Include="..\Resources\PlayNormal.png" />
     <Image Include="..\Resources\PlaySelected.png" />
+    <Image Include="..\Resources\test.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
