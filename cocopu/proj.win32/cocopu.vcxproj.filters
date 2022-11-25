@@ -52,6 +52,9 @@
     <ClCompile Include="Hitbox.cpp">
       <Filter>Source Files\Classes\C++</Filter>
     </ClCompile>
+    <ClCompile Include="EndScene.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="S:\cocopu\cocopu\proj.win32\main.h">
@@ -124,6 +127,9 @@
       <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
     <ClInclude Include="Hitbox.h">
+      <Filter>Source Files\Classes\H</Filter>
+    </ClInclude>
+    <ClInclude Include="EndScene.h">
       <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
   </ItemGroup>

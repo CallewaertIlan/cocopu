@@ -81,7 +81,7 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
 
-    auto label = Label::createWithTTF("Cocopu Menu", "fonts/Marker Felt.ttf", 75);
+    auto label = Label::createWithTTF("Sheeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesh Menu", "fonts/Marker Felt.ttf", 75);
     if (label == nullptr)
     {
         problemLoading("'fonts/Marker Felt.ttf'");

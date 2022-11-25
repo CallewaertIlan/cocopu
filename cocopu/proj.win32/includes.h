@@ -30,5 +30,6 @@ USING_NS_CC;
 #include "Door.h"
 #include "HUD.h"
 #include "Game.h"
+#include "EndScene.h"
 #include "HelloWorldScene.h"
 #include "AppDelegate.h"

@@ -814,6 +814,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="Controler.h" />
     <ClInclude Include="Dig.h" />
     <ClInclude Include="Door.h" />
+    <ClInclude Include="EndScene.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Game.h" />
@@ -832,6 +833,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="Controler.cpp" />
     <ClCompile Include="Dig.cpp" />
     <ClCompile Include="Door.cpp" />
+    <ClCompile Include="EndScene.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Game.cpp" />
