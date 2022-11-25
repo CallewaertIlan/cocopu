@@ -13,7 +13,7 @@ bool Game::init()
     m_countExit = 0;
     m_countDeath = 0;
     m_coutSpawn = 0;
-    m_maxSpawn = 10;
+    m_maxSpawn = 1;
 
     if (!Scene::init())
     {

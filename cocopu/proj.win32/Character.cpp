@@ -7,7 +7,6 @@ Character::Character()
 	m_collideWallLeft = false;
 	m_collideDirt = false;
 	m_side_right = true;
-	m_timeSideCollide = 0.0f;
 	m_timeLastAnim = 0.0f;
 }
 
@@ -21,7 +20,7 @@ void Character::initialisation(float x, float y) {
 	setPosition(Vec2(x, y));
 	setAnchorPoint(Vec2(0.5f, 0.0f));
 
-	m_hitboxLeft.initialisation(x - getContentSize().width / 2.0f - 1.0f, y + getContentSize().height / 2.0f, 1.0f, getContentSize().height);
+	m_hitboxLeft.initialisation(x - getContentSize().width / 2.0f + 2.0f, y + getContentSize().height / 2.0f, 1.0f, getContentSize().height);
 	m_hitboxRight.initialisation(x + getContentSize().width / 2.0f, y + getContentSize().height / 2.0f, 1.0f, getContentSize().height);
 	m_hitboxBottom.initialisation(x, y, getContentSize().width, 1.0f);
 	m_hitboxTop.initialisation(x, y + getContentSize().height + 1.0f, getContentSize().width, 1.0f);
@@ -98,13 +97,11 @@ void Character::collision(Entity& entity)
 		{
 			swipSide();
 			m_collideWallLeft = true;
-			m_timeSideCollide = timeGetTime();
 		}
 		if (m_hitboxRight.intersect(entity.getHitbox()))
 		{
 			swipSide();
 			m_collideWallRight = true;
-			m_timeSideCollide = timeGetTime();
 		}
 	}
 
