@@ -20,11 +20,17 @@ void Character::initialisation(float x, float y) {
 	setTextureRect(Rect(m_rectX, 90.0f, 35.0f, 40.0f));
 	setPosition(Vec2(x, y));
 	setAnchorPoint(Vec2(0.5f, 0.0f));
+	setScale(SCALE_CHARACTER);
 
-	m_hitboxLeft.initialisation(x - getContentSize().width / 2.0f + 7.0f, y + 1.0f, 2.0f, getContentSize().height + 2.0f);
-	m_hitboxRight.initialisation(x + getContentSize().width / 2.0f - 7.0f, y + 1.0f, 2.0f, getContentSize().height + 2.0f);
-	m_hitboxBottom.initialisation(x - getContentSize().width / 2.0f, y - 1.0f, getContentSize().width, 2.0f);
-	m_hitboxTop.initialisation(x - getContentSize().width / 2.0f, y + getContentSize().height + 1.0f, getContentSize().width, 2.0f);
+	//m_hitboxLeft.initialisation(x - getContentSize().width / 2.0f + 7.0f, y + 1.0f, 2.0f, getContentSize().height + 2.0f);
+	//m_hitboxRight.initialisation(x + getContentSize().width / 2.0f - 7.0f, y + 1.0f, 2.0f, getContentSize().height + 2.0f);
+	//m_hitboxBottom.initialisation(x - getContentSize().width / 2.0f, y - 1.0f, getContentSize().width, 2.0f);
+	//m_hitboxTop.initialisation(x - getContentSize().width / 2.0f, y + getContentSize().height + 1.0f, getContentSize().width, 2.0f);
+
+	m_hitboxLeft.initialisation(x - getContentSize().width * SCALE_CHARACTER / 2.0f, y + 1.0f, 2.0f, getContentSize().height * SCALE_CHARACTER + 2.0f);
+	m_hitboxRight.initialisation(x + getContentSize().width * SCALE_CHARACTER / 2.0f, y + 1.0f, 2.0f, getContentSize().height * SCALE_CHARACTER + 2.0f);
+	m_hitboxBottom.initialisation(x - getContentSize().width * SCALE_CHARACTER / 2.0f, y - 1.0f, getContentSize().width * SCALE_CHARACTER, 2.0f);
+	m_hitboxTop.initialisation(x - getContentSize().width * SCALE_CHARACTER / 2.0f, y + getContentSize().height * SCALE_CHARACTER + 1.0f, getContentSize().width * SCALE_CHARACTER, 2.0f);
 
 	scheduleUpdate(); 
 }
