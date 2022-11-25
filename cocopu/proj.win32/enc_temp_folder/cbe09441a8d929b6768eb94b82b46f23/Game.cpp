@@ -29,7 +29,7 @@ bool Game::init()
     m_maxSpawn = 10;
 
     m_timeStart = timeGetTime();
-    m_timeMax = 10.0f * 1000.0f;
+    m_timeMax = 10000000000000000.0f * 1000.0f;
 
     m_jump = false;
     m_glide = false;

@@ -59,6 +59,8 @@ public:
 
 	void update(float) override;
 
+	Label& getTimer() { return m_timer; };
+
 	// implement the "static create()" method manually
 	CREATE_FUNC(Game);
 
@@ -79,4 +81,9 @@ protected:
 	vector<Character*> m_listCharacter;
 	Layer m_gameLayer;
 	Controler m_controls;
+
+	Label m_timer;
+
+	float m_timeStart;
+	float m_timeMax;
 };

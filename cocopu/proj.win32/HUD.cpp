@@ -20,7 +20,8 @@ void HUD::initialisation()
     createBlockButton(500, 37);
     createDigButton(600, 37);
     createExplosionButton(700, 37);
-    
+    createMineButton(800, 37);
+    createDrawTimer(900, 37);
 }
 
 
@@ -194,9 +195,16 @@ void HUD::createMineButton(float x, float y)
     addChild(button);
 }
 
-void HUD::createText(float x, float y)
+void HUD::createDrawTimer(float x, float y)
 {
+    if (&getGame()->getTimer() != nullptr)
+    {
+        // position the label on the center of the screen
+        //getGame()->getTimer().setPosition(Vec2(x, y));
 
+        // add the label as a child to this layer
+        //getGame()->getLayer().addChild(&getGame()->getTimer(), 1);
+    }
 }
 
 void HUD::buttonCallback()
