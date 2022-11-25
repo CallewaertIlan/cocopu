@@ -8,6 +8,7 @@ Character::Character()
 	m_collideDirt = false;
 	m_side_right = true;
 	m_timeLastAnim = 0.0f;
+	m_timeLastSwitch = 0.0f;
 }
 
 Character::~Character()
@@ -20,13 +21,12 @@ void Character::initialisation(float x, float y) {
 	setPosition(Vec2(x, y));
 	setAnchorPoint(Vec2(0.5f, 0.0f));
 
-	m_hitboxLeft.initialisation(x - getContentSize().width / 2.0f + 2.0f, y + getContentSize().height / 2.0f, 1.0f, getContentSize().height);
-	m_hitboxRight.initialisation(x + getContentSize().width / 2.0f, y + getContentSize().height / 2.0f, 1.0f, getContentSize().height);
-	m_hitboxBottom.initialisation(x, y, getContentSize().width, 1.0f);
-	m_hitboxTop.initialisation(x, y + getContentSize().height + 1.0f, getContentSize().width, 1.0f);
+	m_hitboxLeft.initialisation(x - getContentSize().width / 2.0f + 7.0f, y + 1.0f, 2.0f, getContentSize().height + 2.0f);
+	m_hitboxRight.initialisation(x + getContentSize().width / 2.0f - 7.0f, y + 1.0f, 2.0f, getContentSize().height + 2.0f);
+	m_hitboxBottom.initialisation(x - getContentSize().width / 2.0f, y - 1.0f, getContentSize().width, 2.0f);
+	m_hitboxTop.initialisation(x - getContentSize().width / 2.0f, y + getContentSize().height + 1.0f, getContentSize().width, 2.0f);
 
-
-	scheduleUpdate();
+	scheduleUpdate(); 
 }
 
 
@@ -62,8 +62,6 @@ void Character::move() {
 	if (movement.y != 0.0f) {
 		movement.x = 0.0f;
 	}
-	//auto moveBy = MoveBy::create(1, movement);
-	//runAction(moveBy);
 
 	m_hitboxLeft.addX(movement.x);
 	m_hitboxRight.addX(movement.x);
@@ -73,7 +71,7 @@ void Character::move() {
 	m_hitboxLeft.addY(movement.y);
 	m_hitboxRight.addY(movement.y);
 	m_hitboxBottom.addY(movement.y);
-	m_hitboxTop.addY(movement.y); 
+	m_hitboxTop.addY(movement.y);
 
 	setPosition(getPosition().x + movement.x, getPosition().y + movement.y);
 
@@ -110,7 +108,7 @@ void Character::collision(Entity& entity)
 		unscheduleUpdate();
 		setOpacity(0);
 	}
-} 
+}
 
 float Character::getDistance(Entity& entity)
 {
@@ -130,15 +128,15 @@ float Character::getNextDistance(Entity& entity)
 
 void Character::swipSide()
 {
-	if (m_side_right) {
+	if (m_side_right && m_time > m_timeLastSwitch + 500.0f) {
 		m_side_right = false;
+		m_timeLastSwitch = timeGetTime();
 		setFlippedX(true);
-		//stopAllActions();
 	}
-	else {
+	else if (m_time > m_timeLastSwitch + 500.0f) {
 		m_side_right = true;
+		m_timeLastSwitch = timeGetTime();
 		setFlippedX(false);
-		//stopAllActions();
 	}
 }
 

@@ -37,6 +37,7 @@ private:
 	float m_timeSideCollide;
 	float m_time;
 	float m_timeLastAnim;
+	float m_timeLastSwitch;
 	float m_rectX;
 
 	bool m_collideWallRight;
