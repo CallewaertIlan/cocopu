@@ -13,8 +13,13 @@ bool Game::init()
     m_countExit = 0;
     m_countDeath = 0;
     m_coutSpawn = 0;
-    m_maxSpawn = 1;
+    m_maxSpawn = 10;
 
+    m_jump = false;
+    m_glide = false;
+    m_block = false;
+    m_dig = false;
+    m_explosion = false;
 
     if (!Scene::init())
     {
@@ -148,4 +153,79 @@ void Game::setListObject(vector<Entity*> list)
     {
         m_listObject.push_back(list[i]);
     }
+}
+
+//jump
+void Game::setActionJump(bool jump)
+{
+    m_jump = jump;
+
+}
+
+bool Game::getActionJump()
+{
+    return m_jump;
+}
+
+//block
+void Game::setActionBlock(bool block)
+{
+    m_block = block;
+}
+
+bool Game::getActionBlock()
+{
+    return m_block;
+
+}
+
+//explosion
+void Game::setActionExplosion(bool explosion)
+{
+    m_explosion = explosion;
+
+}
+
+bool Game::getActionExplosion()
+{
+    return m_explosion;
+}
+
+//dig
+void Game::setActionDig(bool dig)
+{
+    m_dig = dig;
+
+}
+
+bool Game::getActionDig()
+{
+    return m_dig;
+
+}
+
+//mine
+void Game::setActionMine(bool mine)
+{
+    m_mine = mine;
+
+}
+
+bool Game::getActionMine()
+{
+    return m_mine;
+
+}
+
+//glide
+void Game::setActionGlide(bool glide)
+{
+    m_glide = glide;
+
+}
+
+bool Game::getActionGlide()
+{
+    return m_glide;
+
 }

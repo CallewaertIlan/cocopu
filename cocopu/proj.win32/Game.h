@@ -18,6 +18,30 @@ public:
 	void setCountSpawn(int value);
 	void setListObject(vector<Entity*> list);
 
+	void setActionJump(bool jump);
+
+	bool getActionJump();
+
+	void setActionBlock(bool block);
+
+	bool getActionBlock();
+
+	void setActionExplosion(bool explosion);
+
+	bool getActionExplosion();
+
+	void setActionDig(bool dig);
+
+	bool getActionDig();
+
+	void setActionMine(bool mine);
+
+	bool getActionMine();
+
+	void setActionGlide(bool glide);
+
+	bool getActionGlide();
+
 	void addCountExit(int value);
 	void addCountDeath(int value);
 	void addCountSpawn(int value);
@@ -43,6 +67,13 @@ protected:
 	int m_countDeath;
 	int m_coutSpawn;
 	int m_maxSpawn;
+
+	bool m_jump;
+	bool m_glide;
+	bool m_dig;
+	bool m_mine;
+	bool m_explosion;
+	bool m_block;
 
 	vector<Entity*> m_listObject;
 	vector<Character*> m_listCharacter;

@@ -6,7 +6,6 @@ public:
 	~HUD();
 	void initialisation();
 
-	void actionManager();
 	void update(float) override;
 	void createJumpButton(float x, float y);
 	void createBlockButton(float x, float y);
@@ -14,15 +13,9 @@ public:
 	void createDigButton(float x, float y);
 	void createGlideButton(float x, float y);
 	void createText(float x, float y);
+	void buttonCallback();
 	CREATE_FUNC(HUD);
 private:
 	float m_time;
-	int m_action;
-	bool m_jump;
-	bool m_glide;
-	bool m_dig;
-	bool m_explosion;
-	bool m_block;
-	Vec2 action;
 
 };
