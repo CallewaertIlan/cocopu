@@ -923,6 +923,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <Image Include="..\Resources\lemming.png" />
     <Image Include="..\Resources\MegamanTileset.png" />
     <Image Include="..\Resources\Metal.jpg" />
+    <Image Include="..\Resources\pioche.png" />
     <Image Include="..\Resources\PlayNormal.png" />
     <Image Include="..\Resources\PlaySelected.png" />
     <Image Include="..\Resources\test.png" />

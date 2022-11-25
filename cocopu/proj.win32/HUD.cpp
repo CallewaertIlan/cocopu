@@ -8,6 +8,35 @@ HUD::~HUD()
 {
 }
 
+void HUD::actionManager()
+{
+
+    //if (  )
+    //{
+    //    m_jump =  true
+
+    //}
+    //else if ()
+    //{
+    //    m_glide = true
+    //}
+    //else if ()
+    //{
+    //    m_block =  true
+
+    //}
+    //else if ()
+    //{
+    //     m_dig = true
+
+    //}
+    //else if ()
+    //{
+    //    m_explosion = true
+
+    //}
+}
+
 void HUD::update(float)
 {
 }
@@ -22,11 +51,13 @@ void HUD::initialisation()
      
 }
 
+
 void HUD::createJumpButton(float x, float y)
 {
     auto button = ui::Button::create("JumpButton.png", "JumpButtonSelected.png");
     button->setPosition(Vec2(x, y));
     button->setScale(0.35);
+    //button->setActionManager(m_jump);
     
 
     button->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
@@ -41,8 +72,8 @@ void HUD::createJumpButton(float x, float y)
             break;
         }
         });
-
     addChild(button);
+
 }
 void HUD::createGlideButton(float x, float y)
 {

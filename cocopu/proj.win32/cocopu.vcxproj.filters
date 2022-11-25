@@ -194,7 +194,11 @@
     <Image Include="..\Resources\explosion.png">
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
+<<<<<<< HEAD
+    <Image Include="..\Resources\pioche.png">
+=======
     <Image Include="..\Resources\test.png">
+>>>>>>> 6eb765e1292e9259520e35f60fa88cf560a13099
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
   </ItemGroup>

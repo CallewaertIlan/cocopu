@@ -73,7 +73,7 @@ void Character::move() {
 	m_hitboxLeft.addY(movement.y);
 	m_hitboxRight.addY(movement.y);
 	m_hitboxBottom.addY(movement.y);
-	m_hitboxTop.addY(movement.y);
+	m_hitboxTop.addY(movement.y); 
 
 	setPosition(getPosition().x + movement.x, getPosition().y + movement.y);
 
@@ -110,7 +110,7 @@ void Character::collision(Entity& entity)
 		unscheduleUpdate();
 		setOpacity(0);
 	}
-}
+} 
 
 float Character::getDistance(Entity& entity)
 {

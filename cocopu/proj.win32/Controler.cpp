@@ -34,9 +34,16 @@ bool Controler::init()
 
 bool Controler::onTouchBegan(Touch* touch, Event* event)
 {
-    Explosion* explo = Explosion::create();
+  /*  Explosion* explo = Explosion::create();
     explo->initialisation(touch->getLocation().x, touch->getLocation().y);
     explo->start();
-    getGame()->getLayer().addChild(explo);
+    getGame()->getLayer().addChild(explo);*/
+
+    
     return true;
+}
+
+void Controler::onTouchEnded(Touch* touch, Event* event)
+{
+  
 }

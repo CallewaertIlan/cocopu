@@ -15,6 +15,7 @@ bool Game::init()
     m_coutSpawn = 0;
     m_maxSpawn = 1;
 
+
     if (!Scene::init())
     {
         return false;

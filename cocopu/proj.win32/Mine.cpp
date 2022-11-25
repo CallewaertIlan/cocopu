@@ -16,16 +16,31 @@ void Mine::initialisation(float x, float y)
 	setPosition(x, y);
 }
 
-void Mine::start()
+void Mine::start(Entity& entity)
 {
-	Vec2 movement;
-	if (m_side_right) {
-		movement.x += 0;
+
+	/*if (entity.getType() == Entity::WALL_LEFT || Entity::WALL_RIGHT)
+	{
+		Vec2 movement;
+		if (m_side_right) {
+			movement.x += 0;
+		}
+		else {
+			movement.x -= 0;
+		}
+
+		DelayTime::create(4);
+
+		if (m_side_right) {
+			movement.x += 1;
+		}
+		else {
+			movement.x -= 1;
+		}
 	}
-	else {
-		movement.x -= 0;
-	}
-	scheduleUpdate();
+	
+
+	scheduleUpdate();*/
 }
 
 void Mine::stop()
