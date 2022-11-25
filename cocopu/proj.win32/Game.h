@@ -81,6 +81,7 @@ protected:
 	vector<Character*> m_listCharacter;
 	Layer m_gameLayer;
 	Controler m_controls;
+	Label m_testAction;
 
 	Label m_timer;
 

@@ -15,6 +15,7 @@ Game::Game()
     m_block = false;
     m_dig = false;
     m_explosion = false;
+    m_mine = false;
 }
 
 Game::~Game()
@@ -29,13 +30,14 @@ bool Game::init()
     m_maxSpawn = 10;
 
     m_timeStart = timeGetTime();
-    m_timeMax = 10.0f * 1000.0f;
+    m_timeMax = 100000000.0f * 1000.0f;
 
     m_jump = false;
     m_glide = false;
     m_block = false;
     m_dig = false;
     m_explosion = false;
+    m_mine = false;
 
     if (!Scene::init())
     {
@@ -54,6 +56,17 @@ bool Game::init()
 
         // add the label as a child to this layer
         this->addChild(label, 1);
+    }
+
+    if (&m_testAction != nullptr)
+    {
+        // position the label on the center of the screen
+        m_testAction.setPosition(Vec2(500, 500));
+
+        m_testAction.setString("null");
+
+        // add the label as a child to this layer
+        addChild(&m_testAction, 1);
     }
     
     HUD* hud = HUD::create();
@@ -88,6 +101,25 @@ void Game::update(float f)
     int time = (int)timeGetTime();
     string timeNow = std::to_string(((int)m_timeMax + ((int)m_timeStart - (int)time)) / 1000);
     m_timer.setString(timeNow);
+
+    if (m_jump) {
+        m_testAction.setString("jump");
+    }
+    if (m_glide) {
+        m_testAction.setString("glide");
+    }
+    if (m_dig) {
+        m_testAction.setString("dig");
+    }
+    if (m_mine) {
+        m_testAction.setString("mine");
+    }
+    if (m_explosion) {
+        m_testAction.setString("explosion");
+    }
+    if (m_block) {
+        m_testAction.setString("block");
+    }
 
     // Update collide
     for (int i = 0; i < m_listCharacter.size(); i++)

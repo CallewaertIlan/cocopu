@@ -19,6 +19,8 @@ void Door::initialisation(float x, float y, int type) {
 	setPosition(Vec2(x, y));
 	setAnchorPoint(Vec2(0.5, 1));
 
+	m_hitbox.initialisation(getPosition().x - getContentSize().width / 2.0f, getPosition().y - getContentSize().height, 32.0f, 18.0f * 3.0f);
+
 	scheduleUpdate();
 }
 
