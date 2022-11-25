@@ -32,4 +32,12 @@ void Entity::initialisation(float x, float y, int type)
 	setAnchorPoint(Vec2(0, 1));
 
 	scheduleUpdate();
+
+	Sprite* m_sprite = Sprite::create();
+	m_sprite->setTexture("test2.png");
+	m_sprite->setPosition(0, 0);
+	m_sprite->setOpacity(75);
+	m_sprite->setAnchorPoint(Vec2(0, 0));
+	//m_sprite->setPosition(getPosition().x - getContentSize().width / 2.0f, getPosition().y - getContentSize().height);
+	addChild(m_sprite);
 }
