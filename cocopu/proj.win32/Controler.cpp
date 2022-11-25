@@ -34,16 +34,53 @@ bool Controler::init()
 
 bool Controler::onTouchBegan(Touch* touch, Event* event)
 {
-    //Explosion* explo = Explosion::create();
-    //explo->initialisation(touch->getLocation().x, touch->getLocation().y);
-    //explo->start();
-    //getGame()->getLayer().addChild(explo);
+    for (int i = 0; i < getGame()->getListCharacter().size(); i++)
+    {
+        if (isIn(getGame()->getListCharacter()[i]->getHitboxGlobal(), touch) && getGame()->getListCharacter()[i]->getOpacity() != 0.0f)
+        {
+            if (getGame()->getActionExplosion())
+                explosion(touch->getLocation().x, touch->getLocation().y);
+            if (getGame()->getActionJump())
+                jump(getGame()->getListCharacter()[i]);
+            if (getGame()->getActionBlock())
+                block(getGame()->getListCharacter()[i]);
+        }
+    }
 
-    
     return true;
 }
 
 void Controler::onTouchEnded(Touch* touch, Event* event)
 {
   
+}
+
+bool Controler::isIn(Hitbox* hitbox, Touch* touch)
+{
+    if (touch->getLocation().x < hitbox->getX() + hitbox->getWidth() && touch->getLocation().x > hitbox->getX())
+        if (touch->getLocation().x < hitbox->getX() + hitbox->getWidth() && touch->getLocation().x > hitbox->getX())
+            return true;
+    return false;
+}
+
+void Controler::explosion(float x, float y)
+{
+    Explosion* explo = Explosion::create();
+    explo->initialisation(x, y);
+    explo->start();
+    getGame()->getLayer().addChild(explo);
+}
+
+
+
+void Controler::jump(Character* character)
+{
+    Jump* jump = new Jump();
+    jump->jump(character);
+}
+
+void Controler::block(Character* character)
+{
+    Block* block = new Block();
+    block->block(character);
 }

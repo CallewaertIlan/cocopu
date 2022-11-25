@@ -19,7 +19,6 @@ USING_NS_CC;
 
 #include "Global.h"
 #include "Hitbox.h"
-#include "Controler.h"
 #include "Entity.h"
 #include "Character.h"
 #include "Block.h"
@@ -28,6 +27,7 @@ USING_NS_CC;
 #include "Dig.h"
 #include "Explosion.h"
 #include "Door.h"
+#include "Controler.h"
 #include "HUD.h"
 #include "Game.h"
 #include "EndScene.h"

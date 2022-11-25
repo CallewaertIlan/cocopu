@@ -17,6 +17,7 @@ public:
 	void setCountDeath(int value);
 	void setCountSpawn(int value);
 	void setListObject(vector<Entity*> list);
+	void setListCharacter(vector<Character*> list);
 
 	void setActionJump(bool jump);
 
@@ -51,6 +52,8 @@ public:
 	int getCountSpawn() { return m_coutSpawn; };
 	int getMaxSpawn() { return m_maxSpawn; };
 
+	Label& getTimer() { return m_timer; };
+
 	void menuCloseCallback(Ref* pSender);
 
 	void LoadRessources();
@@ -59,7 +62,6 @@ public:
 
 	void update(float) override;
 
-	Label& getTimer() { return m_timer; };
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Game);

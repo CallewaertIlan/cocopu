@@ -19,7 +19,8 @@ public:
 	float getDistance(Entity& entity);
 	float getNextDistance(Entity& entity);
 
-	Hitbox* getHitboxLeft() { return &m_hitboxLeft;};
+	Hitbox* getHitboxGlobal() { return &m_hitboxGlobal; };
+	Hitbox* getHitboxLeft() { return &m_hitboxLeft; };
 	Hitbox* getHitboxRight() { return &m_hitboxRight;};
 	Hitbox* getHitboxBottom() { return &m_hitboxBottom;};
 	Hitbox* getHitboxTop() { return &m_hitboxTop;};
@@ -29,6 +30,7 @@ public:
 	// implement the "static create()" method manually
 	CREATE_FUNC(Character);
 private:
+	Hitbox m_hitboxGlobal;
 	Hitbox m_hitboxLeft;
 	Hitbox m_hitboxRight;
 	Hitbox m_hitboxBottom;

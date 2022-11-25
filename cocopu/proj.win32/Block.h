@@ -5,8 +5,7 @@ public:
 	Block();
 	~Block();
 
-	void update(float) override;
-	void block();
+	void block(Character* character);
 
 private:
 	float m_time;

@@ -7,7 +7,8 @@ public:
 	~Jump();
 
 	void update(float) override;
-	void jump();
+	void jump(Character* character);
+
 
 private:
 	float m_time;

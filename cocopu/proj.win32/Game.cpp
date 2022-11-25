@@ -5,7 +5,7 @@ Game::Game()
     m_countExit = 0;
     m_countDeath = 0;
     m_coutSpawn = 0;
-    m_maxSpawn = 10;
+    m_maxSpawn = 0;
 
     m_timeStart = 0.0f;
     m_timeMax = 0.0f;
@@ -27,10 +27,10 @@ bool Game::init()
     m_countExit = 0;
     m_countDeath = 0;
     m_coutSpawn = 0;
-    m_maxSpawn = 10;
+    m_maxSpawn = 2;
 
     m_timeStart = timeGetTime();
-    m_timeMax = 100000000.0f * 1000.0f;
+    m_timeMax = 1000.0f * 1000.0f;
 
     m_jump = false;
     m_glide = false;
@@ -63,18 +63,28 @@ bool Game::init()
         // position the label on the center of the screen
         m_testAction.setPosition(Vec2(500, 500));
 
-        m_testAction.setString("null");
+        m_testAction.setString("Aucune action séléactionné");
 
         // add the label as a child to this layer
         addChild(&m_testAction, 1);
     }
-    
+
+    if (&m_timer != nullptr)
+    {
+        // position the label on the center of the screen
+        m_timer.setPosition(Vec2(900, 37));
+
+        // add the label as a child to this layer
+        getLayer().addChild(&m_timer, 1);
+    }
+
     HUD* hud = HUD::create();
     hud->initialisation();
 
     addChild(hud);
 
     addChild(&m_gameLayer);
+
 
     m_controls.init();
     addChild(&m_controls);
@@ -93,9 +103,9 @@ void Game::update(float f)
     if (m_timeMax + m_timeStart < timeGetTime())
     {
         // create a scene. it's an autorelease object
-        auto menu = new HelloWorld;
-        auto menuScene = menu->createScene();
-        Director::getInstance()->replaceScene(menuScene);
+        auto end = new EndScene;
+        auto endScene = end->createScene();
+        Director::getInstance()->replaceScene(endScene);
     }
 
     int time = (int)timeGetTime();
@@ -213,6 +223,15 @@ void Game::setListObject(vector<Entity*> list)
     for (int i = 0; i < list.size(); i++)
     {
         m_listObject.push_back(list[i]);
+    }
+}
+
+void Game::setListCharacter(vector<Character*> list)
+{
+    m_listCharacter.clear();
+    for (int i = 0; i < list.size(); i++)
+    {
+        m_listCharacter.push_back(list[i]);
     }
 }
 

@@ -22,11 +22,14 @@ void Character::initialisation(float x, float y) {
 	setAnchorPoint(Vec2(0.5f, 0.0f));
 	setScale(SCALE_CHARACTER);
 
+	m_type = Entity::CHARACTER;
+
 	//m_hitboxLeft.initialisation(x - getContentSize().width / 2.0f + 7.0f, y + 1.0f, 2.0f, getContentSize().height + 2.0f);
 	//m_hitboxRight.initialisation(x + getContentSize().width / 2.0f - 7.0f, y + 1.0f, 2.0f, getContentSize().height + 2.0f);
 	//m_hitboxBottom.initialisation(x - getContentSize().width / 2.0f, y - 1.0f, getContentSize().width, 2.0f);
 	//m_hitboxTop.initialisation(x - getContentSize().width / 2.0f, y + getContentSize().height + 1.0f, getContentSize().width, 2.0f);
 
+	m_hitboxGlobal.initialisation(x - getContentSize().width * SCALE_CHARACTER / 2.0f, y, getContentSize().width * SCALE_CHARACTER, getContentSize().height * SCALE_CHARACTER);
 	m_hitboxLeft.initialisation(x - getContentSize().width * SCALE_CHARACTER / 2.0f, y + 1.0f, 2.0f, getContentSize().height * SCALE_CHARACTER + 2.0f);
 	m_hitboxRight.initialisation(x + getContentSize().width * SCALE_CHARACTER / 2.0f, y + 1.0f, 2.0f, getContentSize().height * SCALE_CHARACTER + 2.0f);
 	m_hitboxBottom.initialisation(x - getContentSize().width * SCALE_CHARACTER / 2.0f, y - 1.0f, getContentSize().width * SCALE_CHARACTER, 2.0f);
@@ -69,11 +72,13 @@ void Character::move() {
 		movement.x = 0.0f;
 	}
 
+	m_hitboxGlobal.addX(movement.x);
 	m_hitboxLeft.addX(movement.x);
 	m_hitboxRight.addX(movement.x);
 	m_hitboxBottom.addX(movement.x);
 	m_hitboxTop.addX(movement.x);
 
+	m_hitboxGlobal.addY(movement.y);
 	m_hitboxLeft.addY(movement.y);
 	m_hitboxRight.addY(movement.y);
 	m_hitboxBottom.addY(movement.y);
@@ -93,7 +98,7 @@ void Character::problemLoading(const char* filename)
 
 void Character::collision(Entity& entity)
 {
-	if (entity.getType() == Entity::DIRT)
+	if (entity.getType() == Entity::DIRT || m_type == Entity::CHARACTER)
 	{
 		if (m_hitboxBottom.intersect(entity.getHitbox()))
 			m_collideDirt = true;

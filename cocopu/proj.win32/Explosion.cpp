@@ -38,7 +38,7 @@ void Explosion::animation()
 	m_rectX += 60.0f;
 	if (m_rectX > 420.0f)
 		stop();
-	else if (m_rectX > 300.0f)
+	else if (m_rectX > 0.0f)
 		deleteCollideEntities();
 	setTextureRect(Rect(m_rectX, 0.0f, 60.0f, 60.0f));
 	m_timeLastAnim = m_time;

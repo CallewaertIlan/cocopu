@@ -8,6 +8,13 @@ public:
     static cocos2d::Scene* createScene();
     virtual bool init();
 
+    void explosion(float x, float y);
+    void jump(Character* character);
+    void block(Character* character);
+
+
+    bool isIn(Hitbox* hitbox, Touch* touch);
+
     virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
     virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
     //virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);

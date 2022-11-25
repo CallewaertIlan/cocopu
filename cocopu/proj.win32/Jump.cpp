@@ -12,7 +12,7 @@ void Jump::update(float)
 {
 }
 
-void Jump::jump()
+void Jump::jump(Character* character)
 {
     // create a jump actions.
     auto jump = JumpBy::create(0.5, Vec2(0, 0), 100, 1);
@@ -23,5 +23,5 @@ void Jump::jump()
 
     auto jumping = Sequence::create(jump, callbackJump, nullptr);
 
-    //character->runAction(jumping);
+    character->runAction(jumping);
 }

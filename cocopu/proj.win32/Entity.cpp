@@ -33,3 +33,8 @@ void Entity::initialisation(float x, float y, int type)
 
 	scheduleUpdate();
 }
+
+void Entity::setType(int type)
+{
+	m_type = type;
+}
