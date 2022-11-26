@@ -15,7 +15,7 @@ void Entity::initialisation(float x, float y, int type)
 	switch (m_type)
 	{
 	case DIRT:
-		setTexture("metal.png");
+		setTexture("Metal.jpg");
 		break;
 	case DOOR_ENTER:
 		setTexture("door_open.png");
@@ -37,4 +37,9 @@ void Entity::initialisation(float x, float y, int type)
 void Entity::setType(int type)
 {
 	m_type = type;
+}
+
+void Entity::setHitbox(float x, float y, float width, float height)
+{
+	m_hitbox.initialisation(x, y, width, height);
 }

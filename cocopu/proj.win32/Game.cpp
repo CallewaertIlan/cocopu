@@ -61,9 +61,10 @@ bool Game::init()
     if (&m_testAction != nullptr)
     {
         // position the label on the center of the screen
-        m_testAction.setPosition(Vec2(500, 500));
+        m_testAction.setPosition(Vec2(1000, 37));
+        m_testAction.setScale(2.0f);
 
-        m_testAction.setString("Aucune action séléactionné");
+        m_testAction.setString("None");
 
         // add the label as a child to this layer
         addChild(&m_testAction, 1);
@@ -73,6 +74,7 @@ bool Game::init()
     {
         // position the label on the center of the screen
         m_timer.setPosition(Vec2(900, 37));
+        m_timer.setScale(2.0f);
 
         // add the label as a child to this layer
         getLayer().addChild(&m_timer, 1);
@@ -113,22 +115,22 @@ void Game::update(float f)
     m_timer.setString(timeNow);
 
     if (m_jump) {
-        m_testAction.setString("jump");
+        m_testAction.setString("Jump");
     }
-    if (m_glide) {
-        m_testAction.setString("glide");
+    else if (m_glide) {
+        m_testAction.setString("Glide");
     }
-    if (m_dig) {
-        m_testAction.setString("dig");
+    else if (m_dig) {
+        m_testAction.setString("Dig");
     }
-    if (m_mine) {
-        m_testAction.setString("mine");
+    else if (m_mine) {
+        m_testAction.setString("Mine");
     }
-    if (m_explosion) {
-        m_testAction.setString("explosion");
+    else if (m_explosion) {
+        m_testAction.setString("Explosion");
     }
-    if (m_block) {
-        m_testAction.setString("block");
+    else if (m_block) {
+        m_testAction.setString("Block");
     }
 
     // Update collide

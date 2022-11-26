@@ -39,7 +39,10 @@ bool Controler::onTouchBegan(Touch* touch, Event* event)
         if (isIn(getGame()->getListCharacter()[i]->getHitboxGlobal(), touch) && getGame()->getListCharacter()[i]->getOpacity() != 0.0f)
         {
             if (getGame()->getActionExplosion())
-                explosion(touch->getLocation().x, touch->getLocation().y);
+            {
+                explosion(getGame()->getListCharacter()[i]->getPosition().x, getGame()->getListCharacter()[i]->getPosition().y);
+                getGame()->getListCharacter()[i]->setOpacity(0);
+            }
             if (getGame()->getActionJump())
                 jump(getGame()->getListCharacter()[i]);
             if (getGame()->getActionBlock())

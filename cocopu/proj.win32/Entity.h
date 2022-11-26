@@ -17,6 +17,7 @@ public:
 	Hitbox* getHitbox() { return &m_hitbox; };
 	int getType() { return m_type; };
 	void setType(int type);
+	void setHitbox(float x, float y, float width, float height);
 	void initialisation(float x, float y, int type);
 
 	// implement the "static create()" method manually
