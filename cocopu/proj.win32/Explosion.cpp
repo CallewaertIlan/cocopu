@@ -52,7 +52,7 @@ void Explosion::deleteCollideEntities() {
 
 	for (int i = 0; i < listEntities.size(); i++)
 	{
-		if (getDistance(listEntities[i]) <= 60.0f) {
+		if (getDistance(listEntities[i]) <= 60.0f && listEntities[i]->getType() == Entity::DIRT) {
 			listNumberEntitiesDelete.push_back(i);
 			getGame()->getListObject()[i]->setOpacity(0);
 		}

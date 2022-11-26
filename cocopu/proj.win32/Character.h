@@ -36,6 +36,8 @@ private:
 	Hitbox m_hitboxBottom;
 	Hitbox m_hitboxTop;
 
+	float m_speed;
+
 	float m_timeSideCollide;
 	float m_time;
 	float m_timeLastAnim;

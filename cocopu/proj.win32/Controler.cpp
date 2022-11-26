@@ -40,8 +40,10 @@ bool Controler::onTouchBegan(Touch* touch, Event* event)
         {
             if (getGame()->getActionExplosion())
             {
+                // Explosion
                 explosion(getGame()->getListCharacter()[i]->getPosition().x, getGame()->getListCharacter()[i]->getPosition().y);
                 getGame()->getListCharacter()[i]->setOpacity(0);
+                getGame()->getListCharacter()[i]->unscheduleUpdate();
             }
             if (getGame()->getActionJump())
                 jump(getGame()->getListCharacter()[i]);

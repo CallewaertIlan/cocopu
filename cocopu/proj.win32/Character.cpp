@@ -98,7 +98,13 @@ void Character::problemLoading(const char* filename)
 
 void Character::collision(Entity& entity)
 {
-	if (entity.getType() == Entity::DIRT || m_type == Entity::CHARACTER)
+	if (entity.getType() == Entity::DOOR_EXIT && m_hitboxBottom.intersect(entity.getHitbox()))
+	{
+		unscheduleUpdate();
+		setOpacity(0);
+
+	}
+	if (entity.getType() == Entity::DIRT)
 	{
 		if (m_hitboxBottom.intersect(entity.getHitbox()))
 			m_collideDirt = true;
@@ -114,11 +120,6 @@ void Character::collision(Entity& entity)
 		}
 	}
 
-	if (entity.getType() == Entity::DOOR_EXIT && m_hitboxBottom.intersect(entity.getHitbox()))
-	{
-		unscheduleUpdate();
-		setOpacity(0);
-	}
 }
 
 float Character::getDistance(Entity& entity)
