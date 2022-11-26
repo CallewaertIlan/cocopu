@@ -2,7 +2,8 @@
 
 #define WINSIZE_X												1600
 #define WINSIZE_Y												900
-#define SCALE_CHARACTER											0.9
+#define SCALE_CHARACTER											0.9f
+#define BASE_SPEED												1.0f
 
 using namespace std;
 

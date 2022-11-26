@@ -37,6 +37,7 @@ private:
 	Hitbox m_hitboxTop;
 
 	float m_speed;
+	bool m_isFalling;
 
 	float m_timeSideCollide;
 	float m_time;

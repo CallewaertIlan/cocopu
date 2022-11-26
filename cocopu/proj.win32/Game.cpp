@@ -27,7 +27,7 @@ bool Game::init()
     m_countExit = 0;
     m_countDeath = 0;
     m_coutSpawn = 0;
-    m_maxSpawn = 2;
+    m_maxSpawn = 1;
 
     m_timeStart = timeGetTime();
     m_timeMax = 1000.0f * 1000.0f;

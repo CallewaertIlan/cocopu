@@ -2,6 +2,8 @@
 
 Character::Character()
 {
+	m_speed = BASE_SPEED;
+	m_isFalling = false;
 	m_rectX = 0.0f;
 	m_collideWallRight = false;
 	m_collideWallLeft = false;
@@ -47,20 +49,23 @@ void Character::update(float value) {
 void Character::move() {
 	Vec2 movement;
 	if (m_side_right) {
-		movement.x += 1;
+		//movement.x += (1.0f * m_speed);
+		movement.x += 1.0f;
 	}
 	else{
-		movement.x -= 1;
+		//movement.x -= (1.0f * m_speed);
+		movement.x -= 1.0f;
 	}
 
-	movement.y -= 2;
+	//movement.y -= (2.0f * m_speed);
+	movement.y -= 2.0f;
 
 
-	if (m_collideWallRight && movement.x > 0.0f) {
+	if (m_collideWallRight && movement.x >= 0.0f) {
 		movement.x = 0.0f;
 		m_collideWallRight = false;
 	}
-	else if (m_collideWallLeft && movement.x < 0.0f) {
+	else if (m_collideWallLeft && movement.x <= 0.0f) {
 		movement.x = 0.0f;
 		m_collideWallLeft = false;
 	}
@@ -70,6 +75,15 @@ void Character::move() {
 	}
 	if (movement.y != 0.0f) {
 		movement.x = 0.0f;
+	}
+
+	if (movement.y == 0.0f) {
+		m_isFalling = false;
+		m_speed = BASE_SPEED;
+	}
+	else {
+		m_speed = m_speed * 1.03;
+		m_isFalling = true;
 	}
 
 	m_hitboxGlobal.addX(movement.x);
@@ -107,13 +121,21 @@ void Character::collision(Entity& entity)
 	if (entity.getType() == Entity::DIRT)
 	{
 		if (m_hitboxBottom.intersect(entity.getHitbox()))
+		{
+			if (m_speed >= 56.0f) {
+				// die
+				m_speed = 1.0f;
+				unscheduleUpdate();
+				setOpacity(0);
+			}
 			m_collideDirt = true;
+		}
 		if (m_hitboxLeft.intersect(entity.getHitbox()))
 		{
 			swipSide();
 			m_collideWallLeft = true;
 		}
-		if (m_hitboxRight.intersect(entity.getHitbox()))
+		else if (m_hitboxRight.intersect(entity.getHitbox()))
 		{
 			swipSide();
 			m_collideWallRight = true;
