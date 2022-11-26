@@ -11,6 +11,7 @@ Character::Character()
 	m_side_right = true;
 	m_timeLastAnim = 0.0f;
 	m_timeLastSwitch = 0.0f;
+	m_glide = false;
 }
 
 Character::~Character()
@@ -86,6 +87,16 @@ void Character::move() {
 		m_isFalling = true;
 	}
 
+	if (m_isFalling && m_glide)
+	{
+		setTexture("glide.png");
+		setTextureRect(Rect(m_rectX, 0.0f, 35.0f, 40.0f));
+	}
+	else {
+		setTexture("MegamanTileset.png");
+		setTextureRect(Rect(m_rectX, 90.0f, 35.0f, 40.0f));
+	}
+
 	m_hitboxGlobal.addX(movement.x);
 	m_hitboxLeft.addX(movement.x);
 	m_hitboxRight.addX(movement.x);
@@ -100,7 +111,7 @@ void Character::move() {
 
 	setPosition(getPosition().x + movement.x, getPosition().y + movement.y);
 
-	if (m_time > m_timeLastAnim + 100.0f && movement.y == 0.0f)
+	if (m_time > m_timeLastAnim + 100.0f)
 		animation();
 }
 
@@ -122,7 +133,7 @@ void Character::collision(Entity& entity)
 	{
 		if (m_hitboxBottom.intersect(entity.getHitbox()))
 		{
-			if (m_speed >= 56.0f) {
+			if (m_speed >= 56.0f && !m_glide) {
 				// die
 				m_speed = 1.0f;
 				unscheduleUpdate();
@@ -182,4 +193,9 @@ void Character::animation()
 	}
 	setTextureRect(Rect(m_rectX, 90.0f, 35.0f, 40.0f));
 	m_timeLastAnim = m_time;
+}
+
+void Character::setGlide(bool glide)
+{
+	m_glide = glide;
 }

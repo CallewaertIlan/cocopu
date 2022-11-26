@@ -922,6 +922,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <Image Include="..\Resources\door_open.png" />
     <Image Include="..\Resources\explosion.png" />
+    <Image Include="..\Resources\glide.png" />
     <Image Include="..\Resources\lemming.png" />
     <Image Include="..\Resources\MegamanTileset.png" />
     <Image Include="..\Resources\Metal.jpg" />

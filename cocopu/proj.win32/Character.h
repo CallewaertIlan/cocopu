@@ -19,6 +19,8 @@ public:
 	float getDistance(Entity& entity);
 	float getNextDistance(Entity& entity);
 
+	void setGlide(bool glide);
+
 	Hitbox* getHitboxGlobal() { return &m_hitboxGlobal; };
 	Hitbox* getHitboxLeft() { return &m_hitboxLeft; };
 	Hitbox* getHitboxRight() { return &m_hitboxRight;};
@@ -38,6 +40,8 @@ private:
 
 	float m_speed;
 	bool m_isFalling;
+
+	bool m_glide;
 
 	float m_timeSideCollide;
 	float m_time;

@@ -49,6 +49,8 @@ bool Controler::onTouchBegan(Touch* touch, Event* event)
                 jump(getGame()->getListCharacter()[i]);
             if (getGame()->getActionBlock())
                 block(getGame()->getListCharacter()[i]);
+            if (getGame()->getActionGlide())
+                glide(getGame()->getListCharacter()[i]);
         }
     }
 
@@ -88,4 +90,9 @@ void Controler::block(Character* character)
 {
     Block* block = new Block();
     block->block(character);
+}
+
+void Controler::glide(Character* character)
+{
+    character->setGlide(true);
 }

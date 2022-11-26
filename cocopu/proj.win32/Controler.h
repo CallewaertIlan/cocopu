@@ -11,6 +11,7 @@ public:
     void explosion(float x, float y);
     void jump(Character* character);
     void block(Character* character);
+    void glide(Character* character);
 
 
     bool isIn(Hitbox* hitbox, Touch* touch);
