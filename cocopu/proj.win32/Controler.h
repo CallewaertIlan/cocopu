@@ -13,6 +13,8 @@ public:
     void block(Character* character);
     void glide(Character* character);
 
+    void mine(Character* character);
+    void dig(Character* character);
 
     bool isIn(Hitbox* hitbox, Touch* touch);
 

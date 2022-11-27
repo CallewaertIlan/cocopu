@@ -919,7 +919,6 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Resources\level\Map.txt" />
     <Text Include="..\Resources\level\Map1.txt" />
     <Text Include="..\Resources\level\Map2.txt" />
     <Text Include="..\Resources\level\Map3.txt" />

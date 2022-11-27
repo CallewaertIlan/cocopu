@@ -45,6 +45,13 @@ void Character::initialisation(float x, float y) {
 void Character::update(float value) {
 	m_time = timeGetTime();
 	move();
+	if (getPosition().y < 0)
+	{
+		getGame()->addCountDeath(1);
+		getGame()->addCountAlive(-1);
+		unscheduleUpdate();
+		setOpacity(0);
+	}
 }
 
 void Character::move() {
@@ -129,6 +136,25 @@ void Character::collision(Entity& entity)
 	{
 		unscheduleUpdate();
 		setOpacity(0);
+		setPosition(0, 0);
+
+		m_hitboxBottom.setX(0);
+		m_hitboxBottom.setY(0);
+
+		m_hitboxLeft.setX(0);
+		m_hitboxLeft.setY(0);
+
+		m_hitboxRight.setX(0);
+		m_hitboxRight.setY(0);
+
+		m_hitboxTop.setX(0);
+		m_hitboxTop.setY(0);
+
+		m_hitboxGlobal.setX(0);
+		m_hitboxGlobal.setY(0);
+
+
+		getGame()->addCountExit(1);
 
 	}
 	if (entity.getType() == Entity::DIRT)
@@ -202,4 +228,14 @@ void Character::animation()
 void Character::setGlide(bool glide)
 {
 	m_glide = glide;
+}
+
+void Character::setMine(bool mine)
+{
+	m_mine = m_mine;
+}
+
+void Character::setDig(bool dig)
+{
+	m_dig = dig;
 }

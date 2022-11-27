@@ -178,9 +178,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Resources\level\Map.txt">
-      <Filter>Source Files\Classes\Level</Filter>
-    </Text>
     <Text Include="..\Resources\level\Map2.txt">
       <Filter>Source Files\Classes\Level</Filter>
     </Text>

@@ -19,6 +19,9 @@ public:
 	float getDistance(Entity& entity);
 	float getNextDistance(Entity& entity);
 
+	void setMine(bool mine);
+	void setDig(bool dig);
+
 	void setGlide(bool glide);
 
 	Hitbox* getHitboxGlobal() { return &m_hitboxGlobal; };
@@ -42,6 +45,8 @@ private:
 	bool m_isFalling;
 
 	bool m_glide;
+	bool m_mine;
+	bool m_dig;
 
 	float m_timeSideCollide;
 	float m_time;

@@ -16,19 +16,12 @@ bool Controler::init()
         return false;
     }
 
-    labelTouchInfo = Label::createWithSystemFont("", "Marker Felt", 30);
-
-    labelTouchInfo->setPosition(Vec2(
-        Director::getInstance()->getVisibleSize().width / 2,
-        Director::getInstance()->getVisibleSize().height / 2));
-
     EventListenerTouchOneByOne* touchListener = EventListenerTouchOneByOne::create();
 
     touchListener->onTouchBegan = CC_CALLBACK_2(Controler::onTouchBegan, this);
 
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-    addChild(labelTouchInfo);
     return true;
 }
 
@@ -95,4 +88,14 @@ void Controler::block(Character* character)
 void Controler::glide(Character* character)
 {
     character->setGlide(true);
+}
+
+void Controler::mine(Character* character)
+{
+    character->setMine(true);
+}
+
+void Controler::dig(Character* character)
+{
+    character->setDig(true);
 }
