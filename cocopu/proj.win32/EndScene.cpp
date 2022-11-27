@@ -1,8 +1,8 @@
-#include "cocos2d.h"
-
-#include "../../proj.win32/includes.h"
+#include "includes.h"
 
 USING_NS_CC;
+Game* g_pGame1;
+
 
 Scene* EndScene::createScene()
 {
@@ -25,6 +25,27 @@ bool EndScene::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
+
+    //restart btn
+    auto replayItem = MenuItemImage::create(
+        "RestartButton.png",
+        "RestartButtonSelected.png",
+        CC_CALLBACK_1(EndScene::RestartCallback, this));
+
+    if (replayItem == nullptr ||
+        replayItem->getContentSize().width <= 0 ||
+        replayItem->getContentSize().height <= 0)
+    {
+        true;
+    }
+    else
+    {
+        replayItem->setPosition(Vec2(800, 450));
+    }
+
+    this->addChild(replayItem, 1);
+
+    //exit btn
     auto closeItem = MenuItemImage::create(
         "ExitNormal.png",
         "ExitSelected.png",
@@ -38,7 +59,7 @@ bool EndScene::init()
     }
     else
     {
-        closeItem->setPosition(Vec2(800, 400));
+        closeItem->setPosition(Vec2(800, 200));
     }
 
     this->addChild(closeItem, 1);
@@ -47,7 +68,6 @@ bool EndScene::init()
 
     // add a label shows "Hello World"
     // create and initialize a label
-
     auto label = Label::createWithTTF("GAME OVER", "fonts/Marker Felt.ttf", 75);
     if (label == nullptr)
     {
@@ -62,6 +82,67 @@ bool EndScene::init()
         // add the label as a child to this layer
         this->addChild(label, 1);
     }
+
+    //alive
+    auto alive = Label::createWithTTF("number of alive : "+ getGame()->getCountAlive(), "fonts/Marker Felt.ttf", 75);
+    if (alive == nullptr)
+    {
+        true;
+    }
+    else
+    {
+        // position the label on the center of the screen
+        alive->setPosition(Vec2(800, 600));
+
+        // add the label as a child to this layer
+        this->addChild(alive, 1);
+    }
+
+    //exit
+    auto exit = Label::createWithTTF("number of those who exit : " + getGame()->getCountExit(), "fonts/Marker Felt.ttf", 75);
+    if (exit == nullptr)
+    {
+        true;
+    }
+    else
+    {
+        // position the label on the center of the screen
+        exit->setPosition(Vec2(800, 700));
+
+        // add the label as a child to this layer
+        this->addChild(exit, 1);
+    }
+
+    //death
+    auto death = Label::createWithTTF("nomber of death : " + getGame()->getCountDeath(), "fonts/Marker Felt.ttf", 75);
+    if (death == nullptr)
+    {
+        true;
+    }
+    else
+    {
+        // position the label on the center of the screen
+        death->setPosition(Vec2(800, 800));
+
+        // add the label as a child to this layer
+        this->addChild(death, 1);
+    }
+
+    //time left
+    int time = (int)timeGetTime();
+    string timeNow = std::to_string(((int)m_timeMax + ((int)m_timeStart - (int)time)) / 1000);
+    m_timer.setString("time left : " + timeNow);
+
+    if (&m_timer != nullptr)
+    {
+        // position the label on the center of the screen
+        m_timer.setPosition(Vec2(800, 900));
+        m_timer.setScale(2.0f);
+
+        // add the label as a child to this layer
+        getGame()->getLayer().addChild(&m_timer, 1);
+    }
+
 
     // add "EndScene" splash screen"
     auto sprite = Sprite::create("EndScene.png");
@@ -84,6 +165,9 @@ bool EndScene::init()
     auto close = Menu::create(closeItem, NULL);
     close->setPosition(Vec2::ZERO);
     this->addChild(close, 10);
+    auto play = Menu::create(replayItem, NULL);
+    play->setPosition(Vec2::ZERO);
+    this->addChild(play, 10);
 
     return true;
 }
@@ -91,4 +175,13 @@ bool EndScene::init()
 void EndScene::EndCloseCallback(cocos2d::Ref* pSender)
 {
     Director::getInstance()->end();
+}
+
+void EndScene::RestartCallback(cocos2d::Ref* pSender)
+{
+    Scene* restartgameScene = Game::create();
+    g_pGame1 = (Game*)restartgameScene;
+
+    Director::getInstance()->replaceScene(restartgameScene);
+
 }

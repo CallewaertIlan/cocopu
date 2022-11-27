@@ -12,8 +12,15 @@ public:
     // a selector callback
     void EndCloseCallback(cocos2d::Ref* pSender);
 
+    void RestartCallback(cocos2d::Ref* pSender);
+
     CREATE_FUNC(EndScene);
 
+protected:
+    float m_timeMax;
+    float m_timeStart;
+
+    Label m_timer;
 private:
     Layer* m_layer;
 };

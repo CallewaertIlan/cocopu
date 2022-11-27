@@ -18,6 +18,7 @@ void Door::initialisation(float x, float y, int type) {
 	setTexture("door_open.png");
 	setPosition(Vec2(x, y));
 	setAnchorPoint(Vec2(0.5, 1));
+
 	m_hitbox.initialisation(getPosition().x - getContentSize().width / 2.0f, getPosition().y - getContentSize().height, 32.0f, 18.0f * 3.0f);
 
 	scheduleUpdate();
@@ -28,9 +29,8 @@ void Door::update(float value) {
 	if (m_typeDoor == Door::ENTER) {
 		if (getGame()->getMaxSpawn() > getGame()->getCountSpawn() && m_timeLastSpawn + 2000.0f < timeGetTime()) {
 			int count = getGame()->getCountSpawn();
-			count++;
+			count ++;
 			getGame()->setCountSpawn(count);
-			getGame()->addCountAlive(1);
 			m_timeLastSpawn = timeGetTime();
 
 			float x = getPosition().x;
