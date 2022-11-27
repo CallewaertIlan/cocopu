@@ -4,7 +4,7 @@ Game::Game()
 {
     m_countExit = 0;
     m_countDeath = 0;
-    m_coutSpawn = 0;
+    m_countSpawn = 0;
     m_maxSpawn = 0;
 
     m_timeStart = 0.0f;
@@ -16,6 +16,7 @@ Game::Game()
     m_dig = false;
     m_explosion = false;
     m_mine = false;
+    m_X2 = false;
 }
 
 Game::~Game()
@@ -27,8 +28,8 @@ bool Game::init()
     srand(time(NULL));
     m_countExit = 0;
     m_countDeath = 0;
-    m_coutSpawn = 0;
-    m_maxSpawn = 20;
+    m_countSpawn = 0;
+    m_maxSpawn = 10;
 
     m_timeStart = timeGetTime();
     m_timeMax = 1000.0f * 1000.0f;
@@ -68,7 +69,7 @@ bool Game::init()
     if (&m_testAction != nullptr)
     {
         // position the label on the center of the screen
-        m_testAction.setPosition(Vec2(1100, 37));
+        m_testAction.setPosition(Vec2(1125, 37));
         m_testAction.setScale(2.0f);
 
         m_testAction.setString("None");
@@ -85,6 +86,42 @@ bool Game::init()
 
         // add the label as a child to this layer
         getLayer().addChild(&m_timer, 1);
+    }
+
+    if (&m_alive != nullptr)
+    {
+        // position the label on the center of the screen
+        m_alive.setPosition(Vec2(1250, 37));
+        m_alive.setScale(2.0f);
+        // add the label as a child to this layer
+        getLayer().addChild(&m_alive, 1);
+    }
+
+    if (&m_death != nullptr)
+    {
+        // position the label on the center of the screen
+        m_death.setPosition(Vec2(1350, 37));
+        m_death.setScale(2.0f);
+        // add the label as a child to this layer
+        getLayer().addChild(&m_death, 1);
+    }
+
+    if (&m_exit != nullptr)
+    {
+        // position the label on the center of the screen
+        m_exit.setPosition(Vec2(1450, 37));
+        m_exit.setScale(2.0f);
+        // add the label as a child to this layer
+        getLayer().addChild(&m_exit, 1);
+    }
+
+    if (&m_maxspawn != nullptr)
+    {
+        // position the label on the center of the screen
+        m_maxspawn.setPosition(Vec2(1550, 37));
+        m_maxspawn.setScale(2.0f);
+        // add the label as a child to this layer
+        getLayer().addChild(&m_maxspawn, 1);
     }
 
     HUD* hud = HUD::create();
@@ -108,6 +145,22 @@ bool Game::init()
 
 void Game::update(float f)
 {
+    //death count
+    string countDeath = std::to_string(m_countDeath);
+    m_death.setString(countDeath);
+
+    //alive/spawn count
+    string countalive = std::to_string(m_countSpawn);
+    m_alive.setString(countalive);
+
+    //exit count
+    string countExit = std::to_string(m_countExit);
+    m_exit.setString(countExit);
+
+    //maxcount
+    string countMaxSpawn = std::to_string(m_maxSpawn);
+    m_maxspawn.setString(countMaxSpawn);
+
     // Update time
     if (m_timeMax + m_timeStart < timeGetTime())
     {
@@ -238,7 +291,7 @@ void Game::setCountDeath(int value) {
 }
 
 void Game::setCountSpawn(int value) {
-    m_coutSpawn = value;
+    m_countSpawn = value;
 }
 
 void Game::addCountExit(int value) {
@@ -250,7 +303,7 @@ void Game::addCountDeath(int value) {
 }
 
 void Game::addCountSpawn(int value) {
-    m_coutSpawn += value;
+    m_countSpawn += value;
 }
 
 void Game::setListObject(vector<Entity*> list)

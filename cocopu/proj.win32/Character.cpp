@@ -140,7 +140,7 @@ void Character::collision(Entity& entity)
 				m_speed = 1.0f;
 				unscheduleUpdate();
 				setOpacity(0);
-				getGame()->setCountDeath(1);
+				getGame()->addCountDeath(1);
 			}
 			m_collideDirt = true;
 		}

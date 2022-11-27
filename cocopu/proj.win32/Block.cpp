@@ -10,6 +10,8 @@ Block::~Block()
 
 void Block::block(Character* character)
 {
+	getGame()->addCountDeath(1);
+
 	vector<Character*> listCharacter = getGame()->getListCharacter();
 	vector<Character*> newListCharacter;
 	//remove_copy(listCharacter.begin(), listCharacter.end(), newListCharacter.begin(), 20);

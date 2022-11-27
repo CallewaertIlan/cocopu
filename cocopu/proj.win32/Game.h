@@ -53,7 +53,7 @@ public:
 
 	int getCountExit() { return m_countExit; };
 	int getCountDeath() { return m_countDeath; };
-	int getCountSpawn() { return m_coutSpawn; };
+	int getCountSpawn() { return m_countSpawn; };
 	int getMaxSpawn() { return m_maxSpawn; };
 
 	Label& getTimer() { return m_timer; };
@@ -72,7 +72,7 @@ public:
 protected:
 	int m_countExit;
 	int m_countDeath;
-	int m_coutSpawn;
+	int m_countSpawn;
 	int m_maxSpawn;
 
 	bool m_jump;
@@ -91,6 +91,10 @@ protected:
 	Label m_testAction;
 
 	Label m_timer;
+	Label m_death;
+	Label m_alive;
+	Label m_exit;
+	Label m_maxspawn;
 
 	float m_timeStart;
 	float m_timeMax;
