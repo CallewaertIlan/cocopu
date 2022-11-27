@@ -24,10 +24,11 @@ Game::~Game()
 
 bool Game::init()
 {
+    srand(time(NULL));
     m_countExit = 0;
     m_countDeath = 0;
     m_coutSpawn = 0;
-    m_maxSpawn = 4;
+    m_maxSpawn = 20;
 
     m_timeStart = timeGetTime();
     m_timeMax = 1000.0f * 1000.0f;
@@ -38,6 +39,12 @@ bool Game::init()
     m_dig = false;
     m_explosion = false;
     m_mine = false;
+    m_X2 = false;
+
+    m_listMaps.push_back("Map1.txt");
+    m_listMaps.push_back("Map2.txt");
+    m_listMaps.push_back("Map3.txt");
+    m_listMaps.push_back("Map4.txt");
 
     if (!Scene::init())
     {
@@ -61,7 +68,7 @@ bool Game::init()
     if (&m_testAction != nullptr)
     {
         // position the label on the center of the screen
-        m_testAction.setPosition(Vec2(1000, 37));
+        m_testAction.setPosition(Vec2(1100, 37));
         m_testAction.setScale(2.0f);
 
         m_testAction.setString("None");
@@ -73,7 +80,7 @@ bool Game::init()
     if (&m_timer != nullptr)
     {
         // position the label on the center of the screen
-        m_timer.setPosition(Vec2(900, 37));
+        m_timer.setPosition(Vec2(1000, 37));
         m_timer.setScale(2.0f);
 
         // add the label as a child to this layer
@@ -132,6 +139,9 @@ void Game::update(float f)
     else if (m_block) {
         m_testAction.setString("Block");
     }
+    else if (m_X2) {
+        m_testAction.setString("X2");
+    }
 
     // Update collide
     for (int i = 0; i < m_listCharacter.size(); i++)
@@ -146,38 +156,62 @@ void Game::update(float f)
 
 void Game::LoadRessources()
 {
-    ifstream inFile;
+    m_listObject.clear();
 
-    inFile.open("../Resources/level/Map.txt", ios::in);
-    int count = 0;
-    string tp;
-    while (getline(inFile, tp)) {
-        for (int i = 0; i < tp.size(); i++)
-        {
-            if (tp[i] == '1') {
-                Entity* dirt = Entity::create();
-                dirt->initialisation(i * 32.0f + 32.0f / 2.0f, WINSIZE_Y - (count * 18.0f), Entity::DIRT);
-                m_gameLayer.addChild(dirt, 0);
-                dirt->setAnchorPoint(Vec2(0.5, 1));
-                m_listObject.push_back(dirt);
-            }
-            else if (tp[i] == 'D') {
-                Door* door_enter = Door::create();
-                door_enter->initialisation(i * 32.0f + 32.0f / 2.0f, WINSIZE_Y - (count * 18.0f), Door::ENTER);
-                m_listObject.push_back(door_enter);
-                m_gameLayer.addChild(door_enter, 0);
-            }
-            else if (tp[i] == 'E') {
-                Door* door_exit = Door::create();
-                door_exit->initialisation(i * 32.0f + 32.0f / 2.0f, WINSIZE_Y - (count * 18.0f), Door::EXIT);
-                m_listObject.push_back(door_exit);
-                door_exit->scheduleUpdate();
-                m_gameLayer.addChild(door_exit, 0);
-            }
+    ifstream inFile;
+    int random = rand() % m_listMaps.size();
+    bool verfiListEmpty = true;
+    for (int i = 0; i < m_listMaps.size(); i++)
+    {
+        if (m_listMaps[i] != "") {
+            verfiListEmpty = false;
         }
-        count++;
     }
-    inFile.close();
+    if (!verfiListEmpty) {
+        while (m_listMaps[random] == "")
+        {
+            random = rand() % m_listMaps.size();
+        }
+        inFile.open("../Resources/level/" + m_listMaps[random], ios::in);
+        m_listMaps[random] = "";
+
+        if (!inFile) {
+            cout << "Unable to open file";
+            return;
+        }
+
+        //inFile.open("../Resources/level/Map.txt", ios::in);
+        //inFile.open("../Resources/level/MAP_COCOPU.txt", ios::in);
+        int count = 0;
+        string tp;
+        while (getline(inFile, tp)) {
+            for (int i = 0; i < tp.size(); i++)
+            {
+                if (tp[i] == '1') {
+                    Entity* dirt = Entity::create();
+                    dirt->initialisation(i * 32.0f + 32.0f / 2.0f, WINSIZE_Y - (count * 18.0f), Entity::DIRT);
+                    m_gameLayer.addChild(dirt, 0);
+                    dirt->setAnchorPoint(Vec2(0.5, 1));
+                    m_listObject.push_back(dirt);
+                }
+                else if (tp[i] == 'D') {
+                    Door* door_enter = Door::create();
+                    door_enter->initialisation(i * 32.0f + 32.0f / 2.0f, WINSIZE_Y - (count * 18.0f), Door::ENTER);
+                    m_listObject.push_back(door_enter);
+                    m_gameLayer.addChild(door_enter, 0);
+                }
+                else if (tp[i] == 'E') {
+                    Door* door_exit = Door::create();
+                    door_exit->initialisation(i * 32.0f + 32.0f / 2.0f, WINSIZE_Y - (count * 18.0f), Door::EXIT);
+                    m_listObject.push_back(door_exit);
+                    door_exit->scheduleUpdate();
+                    m_gameLayer.addChild(door_exit, 0);
+                }
+            }
+            count++;
+        }
+        inFile.close();
+    }
 }
 
 void Game::menuCloseCallback(Ref* pSender)
@@ -309,5 +343,18 @@ void Game::setActionGlide(bool glide)
 bool Game::getActionGlide()
 {
     return m_glide;
+
+}
+
+//X2
+void Game::setActionX2(bool X2)
+{
+    m_X2 = X2;
+
+}
+
+bool Game::getActionX2()
+{
+    return m_X2;
 
 }

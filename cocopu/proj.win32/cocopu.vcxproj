@@ -809,6 +809,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="X2.cpp" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Controler.h" />
@@ -845,6 +846,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="S:\cocopu\cocopu\Classes\AppDelegate.cpp" />
     <ClCompile Include="S:\cocopu\cocopu\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="S:\cocopu\cocopu\proj.win32\main.cpp" />
+    <ClInclude Include="X2.h" />
     <ResourceCompile Include="S:\cocopu\cocopu\proj.win32\game.rc" />
     <ClInclude Include="S:\cocopu\cocopu\Resources\CloseNormal.png" />
     <ClInclude Include="S:\cocopu\cocopu\Resources\CloseSelected.png" />
@@ -918,6 +920,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Resources\level\Map.txt" />
+    <Text Include="..\Resources\level\Map1.txt" />
+    <Text Include="..\Resources\level\Map2.txt" />
+    <Text Include="..\Resources\level\Map3.txt" />
+    <Text Include="..\Resources\level\Map4.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\door_open.png" />

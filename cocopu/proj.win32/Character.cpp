@@ -95,6 +95,8 @@ void Character::move() {
 	else {
 		setTexture("MegamanTileset.png");
 		setTextureRect(Rect(m_rectX, 90.0f, 35.0f, 40.0f));
+		m_glide = false;
+
 	}
 
 	m_hitboxGlobal.addX(movement.x);
@@ -133,11 +135,12 @@ void Character::collision(Entity& entity)
 	{
 		if (m_hitboxBottom.intersect(entity.getHitbox()))
 		{
-			if (m_speed >= 56.0f && !m_glide) {
+			if (m_speed >= 10.0f && !m_glide) {
 				// die
 				m_speed = 1.0f;
 				unscheduleUpdate();
 				setOpacity(0);
+				getGame()->setCountDeath(1);
 			}
 			m_collideDirt = true;
 		}

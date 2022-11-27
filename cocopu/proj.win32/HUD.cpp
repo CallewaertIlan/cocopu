@@ -21,6 +21,7 @@ void HUD::initialisation()
     createDigButton(600, 37);
     createExplosionButton(700, 37);
     createMineButton(800, 37);
+    createX2Button(900, 37);
 }
 
 
@@ -43,6 +44,7 @@ void HUD::createJumpButton(float x, float y)
             getGame()->setActionDig(false);
             getGame()->setActionExplosion(false);
             getGame()->setActionMine(false);
+            getGame()->setActionX2(false);
             std::cout << "Jump button clicked" << std::endl;
             break;
         default:
@@ -71,6 +73,7 @@ void HUD::createGlideButton(float x, float y)
             getGame()->setActionDig(false);
             getGame()->setActionExplosion(false);
             getGame()->setActionMine(false);
+            getGame()->setActionX2(false);
             std::cout << "Glide button clicked" << std::endl;
             break;
         default:
@@ -99,6 +102,7 @@ void HUD::createBlockButton(float x, float y)
             getGame()->setActionDig(false);
             getGame()->setActionExplosion(false);
             getGame()->setActionMine(false);
+            getGame()->setActionX2(false);
             std::cout << "Block button clicked" << std::endl;
             break;
         default:
@@ -127,6 +131,7 @@ void HUD::createDigButton(float x, float y)
             getGame()->setActionDig(true);
             getGame()->setActionExplosion(false);
             getGame()->setActionMine(false);
+            getGame()->setActionX2(false);
             std::cout << "Dig button clicked" << std::endl;
             break;
         default:
@@ -155,6 +160,7 @@ void HUD::createExplosionButton(float x, float y)
             getGame()->setActionDig(false);
             getGame()->setActionExplosion(true);
             getGame()->setActionMine(false);
+            getGame()->setActionX2(false);
             std::cout << "Explosion button clicked" << std::endl;
             break;
         default:
@@ -167,7 +173,7 @@ void HUD::createExplosionButton(float x, float y)
 
 void HUD::createMineButton(float x, float y)
 {
-    auto button = ui::Button::create("ExplosionButton.png", "ExplosionButtonSelected.png");
+    auto button = ui::Button::create("MineButton.png", "MineButtonSelected.png");
     button->setPosition(Vec2(x, y));
     button->setScale(0.35);
 
@@ -184,6 +190,37 @@ void HUD::createMineButton(float x, float y)
             getGame()->setActionDig(false);
             getGame()->setActionExplosion(false);
             getGame()->setActionMine(true);
+            getGame()->setActionX2(false);
+            std::cout << "Mine button clicked" << std::endl;
+            break;
+        default:
+            break;
+        }
+        });
+
+    addChild(button);
+}
+
+void HUD::createX2Button(float x, float y)
+{
+    auto button = ui::Button::create("X2Button.png", "X2ButtonSelected.png");
+    button->setPosition(Vec2(x, y));
+    button->setScale(0.35);
+
+
+    button->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
+        switch (type)
+        {
+        case ui::Widget::TouchEventType::BEGAN:
+            break;
+        case ui::Widget::TouchEventType::ENDED:
+            getGame()->setActionJump(false);
+            getGame()->setActionGlide(false);
+            getGame()->setActionBlock(false);
+            getGame()->setActionDig(false);
+            getGame()->setActionExplosion(false);
+            getGame()->setActionMine(false);
+            getGame()->setActionX2(true);
             std::cout << "Mine button clicked" << std::endl;
             break;
         default:

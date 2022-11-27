@@ -7,7 +7,8 @@
 
 using namespace std;
 
-
+#include<time.h>
+#include <random>
 #include <vector>
 #include <stdlib.h>
 #include <iostream>
@@ -24,6 +25,7 @@ USING_NS_CC;
 #include "Character.h"
 #include "Block.h"
 #include "Jump.h"
+#include "X2.h"
 #include "Mine.h"
 #include "Dig.h"
 #include "Explosion.h"

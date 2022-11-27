@@ -43,6 +43,10 @@ public:
 
 	bool getActionGlide();
 
+	void setActionX2(bool glide);
+
+	bool getActionX2();
+
 	void addCountExit(int value);
 	void addCountDeath(int value);
 	void addCountSpawn(int value);
@@ -65,7 +69,6 @@ public:
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Game);
-
 protected:
 	int m_countExit;
 	int m_countDeath;
@@ -78,7 +81,9 @@ protected:
 	bool m_mine;
 	bool m_explosion;
 	bool m_block;
+	bool m_X2;
 
+	vector<string> m_listMaps;
 	vector<Entity*> m_listObject;
 	vector<Character*> m_listCharacter;
 	Layer m_gameLayer;

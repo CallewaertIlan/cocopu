@@ -55,6 +55,9 @@
     <ClCompile Include="EndScene.cpp">
       <Filter>Source Files\Classes\C++</Filter>
     </ClCompile>
+    <ClCompile Include="X2.cpp">
+      <Filter>Source Files\Classes\C++</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="S:\cocopu\cocopu\proj.win32\main.h">
@@ -132,6 +135,7 @@
     <ClInclude Include="EndScene.h">
       <Filter>Source Files\Classes\H</Filter>
     </ClInclude>
+    <ClInclude Include="X2.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="S:\cocopu\cocopu\CMakeLists.txt" />
@@ -175,6 +179,18 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Resources\level\Map.txt">
+      <Filter>Source Files\Classes\Level</Filter>
+    </Text>
+    <Text Include="..\Resources\level\Map2.txt">
+      <Filter>Source Files\Classes\Level</Filter>
+    </Text>
+    <Text Include="..\Resources\level\Map3.txt">
+      <Filter>Source Files\Classes\Level</Filter>
+    </Text>
+    <Text Include="..\Resources\level\Map4.txt">
+      <Filter>Source Files\Classes\Level</Filter>
+    </Text>
+    <Text Include="..\Resources\level\Map1.txt">
       <Filter>Source Files\Classes\Level</Filter>
     </Text>
   </ItemGroup>
