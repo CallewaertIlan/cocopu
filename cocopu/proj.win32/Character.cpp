@@ -141,6 +141,7 @@ void Character::collision(Entity& entity)
 				unscheduleUpdate();
 				setOpacity(0);
 				getGame()->addCountDeath(1);
+				getGame()->addCountAlive(-1);
 			}
 			m_collideDirt = true;
 		}

@@ -28,6 +28,7 @@ bool Game::init()
     srand(time(NULL));
     m_countExit = 0;
     m_countDeath = 0;
+    m_countAlive = 0;
     m_countSpawn = 0;
     m_maxSpawn = 10;
 
@@ -66,10 +67,20 @@ bool Game::init()
         this->addChild(label, 1);
     }
 
+    if (&m_timer != nullptr)
+    {
+        // position the label on the center of the screen
+        m_timer.setPosition(Vec2(780, 37));
+        m_timer.setScale(2.0f);
+
+        // add the label as a child to this layer
+        getLayer().addChild(&m_timer, 1);
+    }
+
     if (&m_testAction != nullptr)
     {
         // position the label on the center of the screen
-        m_testAction.setPosition(Vec2(1125, 37));
+        m_testAction.setPosition(Vec2(930, 37));
         m_testAction.setScale(2.0f);
 
         m_testAction.setString("None");
@@ -78,20 +89,10 @@ bool Game::init()
         addChild(&m_testAction, 1);
     }
 
-    if (&m_timer != nullptr)
-    {
-        // position the label on the center of the screen
-        m_timer.setPosition(Vec2(1000, 37));
-        m_timer.setScale(2.0f);
-
-        // add the label as a child to this layer
-        getLayer().addChild(&m_timer, 1);
-    }
-
     if (&m_alive != nullptr)
     {
         // position the label on the center of the screen
-        m_alive.setPosition(Vec2(1250, 37));
+        m_alive.setPosition(Vec2(1050, 37));
         m_alive.setScale(2.0f);
         // add the label as a child to this layer
         getLayer().addChild(&m_alive, 1);
@@ -100,7 +101,7 @@ bool Game::init()
     if (&m_death != nullptr)
     {
         // position the label on the center of the screen
-        m_death.setPosition(Vec2(1350, 37));
+        m_death.setPosition(Vec2(1150, 37));
         m_death.setScale(2.0f);
         // add the label as a child to this layer
         getLayer().addChild(&m_death, 1);
@@ -109,16 +110,25 @@ bool Game::init()
     if (&m_exit != nullptr)
     {
         // position the label on the center of the screen
-        m_exit.setPosition(Vec2(1450, 37));
+        m_exit.setPosition(Vec2(1250, 37));
         m_exit.setScale(2.0f);
         // add the label as a child to this layer
         getLayer().addChild(&m_exit, 1);
     }
 
+    if (&m_spawn != nullptr)
+    {
+        // position the label on the center of the screen
+        m_spawn.setPosition(Vec2(1350, 37));
+        m_spawn.setScale(2.0f);
+        // add the label as a child to this layer
+        getLayer().addChild(&m_spawn, 1);
+    }
+
     if (&m_maxspawn != nullptr)
     {
         // position the label on the center of the screen
-        m_maxspawn.setPosition(Vec2(1550, 37));
+        m_maxspawn.setPosition(Vec2(1500, 37));
         m_maxspawn.setScale(2.0f);
         // add the label as a child to this layer
         getLayer().addChild(&m_maxspawn, 1);
@@ -147,19 +157,23 @@ void Game::update(float f)
 {
     //death count
     string countDeath = std::to_string(m_countDeath);
-    m_death.setString(countDeath);
+    m_death.setString("death :" + countDeath);
 
-    //alive/spawn count
-    string countalive = std::to_string(m_countSpawn);
-    m_alive.setString(countalive);
+    //spawn count
+    string countSpawn = std::to_string(m_countSpawn);
+    m_spawn.setString("spawn : " + countSpawn);
 
     //exit count
     string countExit = std::to_string(m_countExit);
-    m_exit.setString(countExit);
+    m_exit.setString("exit : " +countExit);
 
     //maxcount
     string countMaxSpawn = std::to_string(m_maxSpawn);
-    m_maxspawn.setString(countMaxSpawn);
+    m_maxspawn.setString("maxspawn :" +countMaxSpawn);
+
+    //alive count
+    string countAlive = std::to_string(m_countAlive);
+    m_alive.setString("alive :" + countAlive);
 
     // Update time
     if (m_timeMax + m_timeStart < timeGetTime())
@@ -172,7 +186,7 @@ void Game::update(float f)
 
     int time = (int)timeGetTime();
     string timeNow = std::to_string(((int)m_timeMax + ((int)m_timeStart - (int)time)) / 1000);
-    m_timer.setString(timeNow);
+    m_timer.setString("time: " + timeNow);
 
     if (m_jump) {
         m_testAction.setString("Jump");
@@ -294,6 +308,10 @@ void Game::setCountSpawn(int value) {
     m_countSpawn = value;
 }
 
+void Game::setCountAlive(int value) {
+    m_countAlive = value;
+}
+
 void Game::addCountExit(int value) {
     m_countExit += value;
 }
@@ -304,6 +322,10 @@ void Game::addCountDeath(int value) {
 
 void Game::addCountSpawn(int value) {
     m_countSpawn += value;
+}
+
+void Game::addCountAlive(int value) {
+    m_countAlive += value;
 }
 
 void Game::setListObject(vector<Entity*> list)

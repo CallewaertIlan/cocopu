@@ -11,6 +11,7 @@ Block::~Block()
 void Block::block(Character* character)
 {
 	getGame()->addCountDeath(1);
+	getGame()->addCountAlive(-1);
 
 	vector<Character*> listCharacter = getGame()->getListCharacter();
 	vector<Character*> newListCharacter;

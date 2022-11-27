@@ -15,13 +15,13 @@ void HUD::update(float)
 
 void HUD::initialisation() 
 {
-    createJumpButton(300, 37);
-    createGlideButton(400, 37);
-    createBlockButton(500, 37);
-    createDigButton(600, 37);
-    createExplosionButton(700, 37);
-    createMineButton(800, 37);
-    createX2Button(900, 37);
+    createJumpButton(225, 37);
+    createGlideButton(300, 37);
+    createBlockButton(375, 37);
+    createDigButton(450, 37);
+    createExplosionButton(525, 37);
+    createMineButton(600, 37);
+    createX2Button(675, 37);
 }
 
 

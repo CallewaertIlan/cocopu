@@ -16,6 +16,7 @@ public:
 	void setCountExit(int value);
 	void setCountDeath(int value);
 	void setCountSpawn(int value);
+	void setCountAlive(int value);
 	void setListObject(vector<Entity*> list);
 	void setListCharacter(vector<Character*> list);
 
@@ -43,7 +44,7 @@ public:
 
 	bool getActionGlide();
 
-	void setActionX2(bool glide);
+	void setActionX2(bool X2);
 
 	bool getActionX2();
 
@@ -51,10 +52,13 @@ public:
 	void addCountDeath(int value);
 	void addCountSpawn(int value);
 
+	void addCountAlive(int value);
+
 	int getCountExit() { return m_countExit; };
 	int getCountDeath() { return m_countDeath; };
 	int getCountSpawn() { return m_countSpawn; };
 	int getMaxSpawn() { return m_maxSpawn; };
+	int getCountAlive() { return m_countAlive; };
 
 	Label& getTimer() { return m_timer; };
 
@@ -73,6 +77,7 @@ protected:
 	int m_countExit;
 	int m_countDeath;
 	int m_countSpawn;
+	int m_countAlive;
 	int m_maxSpawn;
 
 	bool m_jump;
@@ -95,6 +100,7 @@ protected:
 	Label m_alive;
 	Label m_exit;
 	Label m_maxspawn;
+	Label m_spawn;
 
 	float m_timeStart;
 	float m_timeMax;

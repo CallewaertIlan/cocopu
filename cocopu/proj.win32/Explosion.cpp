@@ -15,6 +15,8 @@ void Explosion::initialisation(float x, float y)
 	setTextureRect(Rect(m_rectX, 0.0f, 60.0f, 60.0f));
 	setPosition(x, y);
 	getGame()->addCountDeath(1);
+	getGame()->addCountAlive(-1);
+
 }
 
 void Explosion::start()
