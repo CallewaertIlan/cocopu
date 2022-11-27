@@ -42,9 +42,4 @@ void Door::update(float value) {
 			getGame()->getLayer().addChild(character);
 		}
 	}
-	//else {
-	//	int exit = getGame()->getCountExit();
-	//	exit++;
-	//	getGame()->setCountExit(exit);
-	//}
 }
