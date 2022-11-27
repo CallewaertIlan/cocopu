@@ -12,6 +12,8 @@ Character::Character()
 	m_timeLastAnim = 0.0f;
 	m_timeLastSwitch = 0.0f;
 	m_glide = false;
+	m_dig = false;
+	m_mine = false;
 }
 
 Character::~Character()
@@ -161,25 +163,50 @@ void Character::collision(Entity& entity)
 	{
 		if (m_hitboxBottom.intersect(entity.getHitbox()))
 		{
-			if (m_speed >= 10.0f && !m_glide) {
-				// die
-				m_speed = 1.0f;
-				unscheduleUpdate();
-				setOpacity(0);
-				getGame()->addCountDeath(1);
-				getGame()->addCountAlive(-1);
+			if (m_isFalling == true && m_speed > 2.07f)
+				m_dig = false;
+			if (m_dig)
+			{
+				popEntityInList(entity);
+				m_speed = BASE_SPEED;
 			}
-			m_collideDirt = true;
+			else
+			{
+				if (m_speed >= 10.0f && !m_glide) {
+					// die
+					m_speed = 1.0f;
+					unscheduleUpdate();
+					setOpacity(0);
+					getGame()->addCountDeath(1);
+					getGame()->addCountAlive(-1);
+				}
+				m_collideDirt = true;
+			}
 		}
+
 		if (m_hitboxLeft.intersect(entity.getHitbox()))
 		{
-			swipSide();
-			m_collideWallLeft = true;
+			if (m_mine)
+			{
+				popEntityInList(entity);
+			}
+			else
+			{
+				swipSide();
+				m_collideWallLeft = true;
+			}
 		}
 		else if (m_hitboxRight.intersect(entity.getHitbox()))
 		{
-			swipSide();
-			m_collideWallRight = true;
+			if (m_mine)
+			{
+				popEntityInList(entity);
+			}
+			else
+			{
+				swipSide();
+				m_collideWallRight = true;
+			}
 		}
 	}
 
@@ -232,10 +259,27 @@ void Character::setGlide(bool glide)
 
 void Character::setMine(bool mine)
 {
-	m_mine = m_mine;
+	m_mine = mine;
 }
 
 void Character::setDig(bool dig)
 {
 	m_dig = dig;
+}
+
+void Character::popEntityInList(Entity& entity)
+{
+	vector<Entity*> newListEntities;
+	vector<Entity*> listEntities = getGame()->getListObject();
+
+	for (int i = 0; i < listEntities.size(); i++)
+	{
+		if (listEntities[i] != &entity) {
+			newListEntities.push_back(listEntities[i]);
+		}
+		else {
+			getGame()->getListObject()[i]->setOpacity(0);
+		}
+	}
+	getGame()->setListObject(newListEntities);
 }

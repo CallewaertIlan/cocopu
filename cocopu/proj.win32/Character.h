@@ -19,6 +19,11 @@ public:
 	float getDistance(Entity& entity);
 	float getNextDistance(Entity& entity);
 
+	void popEntityInList(Entity& entity);
+
+	bool getDig() { return m_dig; };
+	bool getMine() { return m_mine; };
+
 	void setMine(bool mine);
 	void setDig(bool dig);
 
@@ -45,7 +50,11 @@ private:
 	bool m_isFalling;
 
 	bool m_glide;
+
+	float m_lastMine;
 	bool m_mine;
+
+	float m_lastDig;
 	bool m_dig;
 
 	float m_timeSideCollide;

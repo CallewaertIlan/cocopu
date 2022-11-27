@@ -31,19 +31,33 @@ bool Controler::onTouchBegan(Touch* touch, Event* event)
     {
         if (isIn(getGame()->getListCharacter()[i]->getHitboxGlobal(), touch) && getGame()->getListCharacter()[i]->getOpacity() != 0.0f)
         {
+            // Explosion
             if (getGame()->getActionExplosion())
             {
-                // Explosion
                 explosion(getGame()->getListCharacter()[i]->getPosition().x, getGame()->getListCharacter()[i]->getPosition().y);
                 getGame()->getListCharacter()[i]->setOpacity(0);
                 getGame()->getListCharacter()[i]->unscheduleUpdate();
             }
+
+            // Jump
             if (getGame()->getActionJump())
                 jump(getGame()->getListCharacter()[i]);
+            
+            // Block
             if (getGame()->getActionBlock())
                 block(getGame()->getListCharacter()[i]);
+            
+            // Glide
             if (getGame()->getActionGlide())
                 glide(getGame()->getListCharacter()[i]);
+
+            // Mine
+            if (getGame()->getActionMine())
+                mine(getGame()->getListCharacter()[i]);
+
+            // Dig
+            if (getGame()->getActionDig())
+                dig(getGame()->getListCharacter()[i]);
         }
     }
 
@@ -92,10 +106,16 @@ void Controler::glide(Character* character)
 
 void Controler::mine(Character* character)
 {
-    character->setMine(true);
+    if (character->getMine() == false)
+        character->setMine(true);
+    else
+        character->setMine(false);
 }
 
 void Controler::dig(Character* character)
 {
-    character->setDig(true);
+    if (character->getDig() == false)
+        character->setDig(true);
+    else
+        character->setDig(false);
 }
