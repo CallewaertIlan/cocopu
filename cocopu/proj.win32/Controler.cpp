@@ -65,7 +65,7 @@ void Controler::onTouchEnded(Touch* touch, Event* event)
 bool Controler::isIn(Hitbox* hitbox, Touch* touch)
 {
     if (touch->getLocation().x < hitbox->getX() + hitbox->getWidth() && touch->getLocation().x > hitbox->getX())
-        if (touch->getLocation().x < hitbox->getX() + hitbox->getWidth() && touch->getLocation().x > hitbox->getX())
+        if (touch->getLocation().y < hitbox->getY() + hitbox->getHeight() && touch->getLocation().y > hitbox->getY())
             return true;
     return false;
 }
