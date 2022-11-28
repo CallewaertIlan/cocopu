@@ -213,7 +213,7 @@ void Game::update(float f)
     if (getCountExit() < 5 && getCountDeath() + getCountExit() == getMaxSpawn())
     {
         EndScene* loseEnd = new EndScene;
-        loseEnd->initialisation(EndScene::WIN);
+        loseEnd->initialisation(EndScene::LOSE);
         Scene* loseEndScene = loseEnd->createScene();
         Director::getInstance()->replaceScene(loseEndScene);
     }
