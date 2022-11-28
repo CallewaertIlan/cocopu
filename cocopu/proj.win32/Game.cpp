@@ -36,7 +36,7 @@ bool Game::init()
     m_countDeath = 0;
     m_countAlive = 0;
     m_countSpawn = 0;
-    m_maxSpawn = 10;
+    m_maxSpawn = 1;
 
     m_timeStart = timeGetTime();
     m_timeMax = 100.0f * 1000.0f;
@@ -58,7 +58,6 @@ bool Game::init()
     {
         return false;
     }
-    addCountExit(1);
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();

@@ -172,7 +172,7 @@ void Character::collision(Entity& entity)
 			}
 			else
 			{
-				if (m_speed >= 10.0f && !m_glide) {
+				if (m_speed >= 30.0f && !m_glide) {
 					// die
 					m_speed = 1.0f;
 					unscheduleUpdate();
