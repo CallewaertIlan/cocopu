@@ -5,8 +5,14 @@
 class EndScene : public cocos2d::Scene
 {
 public:
+    enum
+    {
+        WIN = 0,
+        LOSE,
+    };
     static cocos2d::Scene* createScene();
 
+    void initialisation(int value);
     virtual bool init();
 
     // a selector callback
@@ -19,6 +25,8 @@ public:
 protected:
     float m_timeMax;
     float m_timeStart;
+
+    int m_type;
 
     Label m_timer;
 private:

@@ -162,6 +162,7 @@ bool Game::init()
 
 void Game::update(float f)
 {
+    // Update time
     m_timeLastUpdate= m_time;
     m_time = timeGetTime();
 
@@ -201,17 +202,31 @@ void Game::update(float f)
     string countAlive = std::to_string(m_countAlive);
     m_alive.setString("alive :" + countAlive);
 
-    // Update time
+    //end 
     if (m_timeMax + m_timeStart + m_timeAcceleration < timeGetTime())
     {
-        // create a scene. it's an autorelease object
-        auto end = new EndScene;
-        auto endScene = end->createScene();
-        Director::getInstance()->replaceScene(endScene);
+        EndScene* loseEnd = new EndScene;
+        loseEnd->initialisation(EndScene::LOSE);
+        Scene* loseEndScene = loseEnd->createScene();
+        Director::getInstance()->replaceScene(loseEndScene);
+    }
+    if (getCountExit() < 5 && getCountDeath() + getCountExit() == getMaxSpawn())
+    {
+        EndScene* loseEnd = new EndScene;
+        loseEnd->initialisation(EndScene::WIN);
+        Scene* loseEndScene = loseEnd->createScene();
+        Director::getInstance()->replaceScene(loseEndScene);
+    }
+    else if (getCountExit() >= 5 && getCountDeath() + getCountExit() == getMaxSpawn())
+    {
+        EndScene* winEnd = new EndScene;
+        winEnd->initialisation(EndScene::WIN);
+        Scene* winEndScene = winEnd->createScene();
+        Director::getInstance()->replaceScene(winEndScene);
     }
 
-    int time = (int)timeGetTime();
-    string timeNow = std::to_string(((int)m_timeMax + ((int)m_timeStart - (int)time + (int)m_timeAcceleration)) / 1000);
+    // Timer
+    string timeNow = std::to_string(((int)m_timeMax + ((int)m_timeStart - (int)m_time + (int)m_timeAcceleration)) / 1000);
     m_timer.setString("time: " + timeNow);
 
     if (m_jump) {

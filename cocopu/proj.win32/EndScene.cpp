@@ -40,7 +40,7 @@ bool EndScene::init()
     }
     else
     {
-        replayItem->setPosition(Vec2(800, 450));
+        replayItem->setPosition(Vec2(800, 300));
     }
 
     this->addChild(replayItem, 1);
@@ -68,38 +68,58 @@ bool EndScene::init()
 
     // add a label shows "Hello World"
     // create and initialize a label
-    auto label = Label::createWithTTF("GAME OVER, YOU LOSE", "fonts/Marker Felt.ttf", 75);
-    if (label == nullptr)
+    if (m_type == EndScene::WIN)
+    {
+        auto label = Label::createWithTTF("CONGRATULATIONS, YOU WIN !!!!!", "fonts/Marker Felt.ttf", 75);
+        if (label == nullptr)
+        {
+            true;
+        }
+        else
+        {
+            // position the label on the center of the screen
+            label->setPosition(Vec2(origin.x + visibleSize.width / 2,
+                origin.y + visibleSize.height - label->getContentSize().height));
+
+            // add the label as a child to this layer
+            this->addChild(label, 1);
+        }
+    }
+    else if (m_type == EndScene::LOSE)
+    {
+        auto label = Label::createWithTTF("GAME OVER, YOU LOSE", "fonts/Marker Felt.ttf", 75);
+        if (label == nullptr)
+        {
+            true;
+        }
+        else
+        {
+            // position the label on the center of the screen
+            label->setPosition(Vec2(origin.x + visibleSize.width / 2,
+                origin.y + visibleSize.height - label->getContentSize().height));
+
+            // add the label as a child to this layer
+            this->addChild(label, 1);
+        }
+    }
+
+    //time left
+    auto timer = Label::createWithTTF("time left : " + std::to_string((int)(getGame()->getTimeMax() / 1000.0f) + (int)((getGame()->getTimeStart() - getGame()->getTime() + getGame()->getTimeAcceleration()) / 1000.0f)), "fonts/Marker Felt.ttf", 75);
+    if (timer == nullptr)
     {
         true;
     }
     else
     {
         // position the label on the center of the screen
-        label->setPosition(Vec2(origin.x + visibleSize.width / 2,
-            origin.y + visibleSize.height - label->getContentSize().height));
+        timer->setPosition(Vec2(800, 500));
 
         // add the label as a child to this layer
-        this->addChild(label, 1);
-    }
-
-    //alive
-    auto alive = Label::createWithTTF("number of alive : " + getGame()->getCountAlive(), "fonts/Marker Felt.ttf", 75);
-    if (alive == nullptr)
-    {
-        true;
-    }
-    else
-    {
-        // position the label on the center of the screen
-        alive->setPosition(Vec2(800, 500));
-
-        // add the label as a child to this layer
-        this->addChild(alive, 1);
+        this->addChild(timer, 1);
     }
 
     //exit
-    auto exit = Label::createWithTTF("number of those who exit : " + getGame()->getCountExit(), "fonts/Marker Felt.ttf", 75);
+    auto exit = Label::createWithTTF("number of those who exit : " + to_string(getGame()->getCountExit()), "fonts/Marker Felt.ttf", 75);
     if (exit == nullptr)
     {
         true;
@@ -114,7 +134,7 @@ bool EndScene::init()
     }
 
     //death
-    auto death = Label::createWithTTF("nomber of death : " + getGame()->getCountDeath(), "fonts/Marker Felt.ttf", 75);
+    auto death = Label::createWithTTF("nomber of death : " + to_string(getGame()->getCountDeath()), "fonts/Marker Felt.ttf", 75);
     if (death == nullptr)
     {
         true;
@@ -127,22 +147,6 @@ bool EndScene::init()
         // add the label as a child to this layer
         this->addChild(death, 1);
     }
-
-    //time left
-    int time = (int)timeGetTime();
-    string timeNow = std::to_string(((int)m_timeMax + ((int)m_timeStart - (int)time)) / 1000);
-    m_timer.setString("time left : " + timeNow);
-
-    if (&m_timer != nullptr)
-    {
-        // position the label on the center of the screen
-        m_timer.setPosition(Vec2(800, 900));
-        m_timer.setScale(2.0f);
-
-        // add the label as a child to this layer
-        getGame()->getLayer().addChild(&m_timer, 1);
-    }
-
 
     // add "EndScene" splash screen"
     auto sprite = Sprite::create("EndScene.png");
@@ -184,4 +188,9 @@ void EndScene::RestartCallback(cocos2d::Ref* pSender)
 
     Director::getInstance()->replaceScene(restartgameScene);
 
+}
+
+void EndScene::initialisation(int value)
+{
+    m_type = value;
 }

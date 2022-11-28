@@ -34,6 +34,5 @@ USING_NS_CC;
 #include "HUD.h"
 #include "Game.h"
 #include "EndScene.h"
-#include "WinEndScene.h"
 #include "HelloWorldScene.h"
 #include "AppDelegate.h"

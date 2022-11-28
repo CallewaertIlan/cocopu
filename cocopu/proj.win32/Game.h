@@ -62,7 +62,10 @@ public:
 
 	void addTimeAcceleration(float value);
 
+	float getTime() { return m_time; };
 	float getTimeAcceleration() { return m_timeAcceleration; };
+	float getTimeMax() { return m_timeMax; };
+	float getTimeStart() { return m_timeStart; };
 
 	void setAcceleration(int acceleration);
 	float getAcceleration() { return m_acceleration; };
