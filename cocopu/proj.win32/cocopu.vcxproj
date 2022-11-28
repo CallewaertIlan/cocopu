@@ -809,6 +809,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="WinEndScene.cpp" />
     <ClCompile Include="X2.cpp" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Character.h" />
@@ -846,6 +847,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="S:\cocopu\cocopu\Classes\AppDelegate.cpp" />
     <ClCompile Include="S:\cocopu\cocopu\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="S:\cocopu\cocopu\proj.win32\main.cpp" />
+    <ClInclude Include="WinEndScene.h" />
     <ClInclude Include="X2.h" />
     <ResourceCompile Include="S:\cocopu\cocopu\proj.win32\game.rc" />
     <ClInclude Include="S:\cocopu\cocopu\Resources\CloseNormal.png" />

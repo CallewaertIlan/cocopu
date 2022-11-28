@@ -33,7 +33,7 @@ bool Game::init()
     m_maxSpawn = 10;
 
     m_timeStart = timeGetTime();
-    m_timeMax = 3.0f * 1000.0f;
+    m_timeMax = 1000.0f * 1000.0f;
 
     m_jump = false;
     m_glide = false;
@@ -179,8 +179,8 @@ void Game::update(float f)
     if (m_timeMax + m_timeStart < timeGetTime())
     {
         // create a scene. it's an autorelease object
-        auto end = new EndScene;
-        auto endScene = end->createScene();
+        auto time_up = new EndScene;
+        auto endScene = time_up->createScene();
         Director::getInstance()->replaceScene(endScene);
     }
 
@@ -219,6 +219,19 @@ void Game::update(float f)
         }
     }
 
+    //end 
+    if (getCountExit() < 5 && getCountDeath() + getCountExit() == getMaxSpawn())
+    {
+        auto end = new EndScene;
+        auto endScene = end->createScene();
+        Director::getInstance()->replaceScene(endScene);
+    }
+    else if (getCountExit() >= 5 && getCountDeath() + getCountExit() == getMaxSpawn())
+    {
+        auto WinEnd = new WinEndScene;
+        auto WinEndScene = WinEnd->createScene();
+        Director::getInstance()->replaceScene(WinEndScene);
+    }
 }
 
 void Game::LoadRessources()
@@ -247,8 +260,10 @@ void Game::LoadRessources()
             return;
         }
 
+        //test map
         //inFile.open("../Resources/level/Map.txt", ios::in);
         //inFile.open("../Resources/level/MAP_COCOPU.txt", ios::in);
+
         int count = 0;
         string tp;
         while (getline(inFile, tp)) {

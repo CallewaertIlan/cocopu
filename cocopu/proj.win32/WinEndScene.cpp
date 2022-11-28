@@ -1,16 +1,16 @@
 #include "includes.h"
 
 USING_NS_CC;
-Game* g_pGame1;
+Game* g_pGame2;
 
-
-Scene* EndScene::createScene()
+Scene* WinEndScene::createScene()
 {
-    return EndScene::create();
+    return WinEndScene::create();
 }
 
+
 // on "init" you need to initialize your instance
-bool EndScene::init()
+bool WinEndScene::init()
 {
     if (!Scene::init())
     {
@@ -30,7 +30,7 @@ bool EndScene::init()
     auto replayItem = MenuItemImage::create(
         "RestartButton.png",
         "RestartButtonSelected.png",
-        CC_CALLBACK_1(EndScene::RestartCallback, this));
+        CC_CALLBACK_1(WinEndScene::WinRestartCallback, this));
 
     if (replayItem == nullptr ||
         replayItem->getContentSize().width <= 0 ||
@@ -40,7 +40,7 @@ bool EndScene::init()
     }
     else
     {
-        replayItem->setPosition(Vec2(800, 450));
+        replayItem->setPosition(Vec2(800, 300));
     }
 
     this->addChild(replayItem, 1);
@@ -49,7 +49,7 @@ bool EndScene::init()
     auto closeItem = MenuItemImage::create(
         "ExitNormal.png",
         "ExitSelected.png",
-        CC_CALLBACK_1(EndScene::EndCloseCallback, this));
+        CC_CALLBACK_1(WinEndScene::WinEndCloseCallback, this));
 
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
@@ -68,7 +68,7 @@ bool EndScene::init()
 
     // add a label shows "Hello World"
     // create and initialize a label
-    auto label = Label::createWithTTF("GAME OVER, YOU LOSE", "fonts/Marker Felt.ttf", 75);
+    auto label = Label::createWithTTF("CONGRATULATION, YOU WIN", "fonts/Marker Felt.ttf", 75);
     if (label == nullptr)
     {
         true;
@@ -128,21 +128,6 @@ bool EndScene::init()
         this->addChild(death, 1);
     }
 
-    //time left
-    int time = (int)timeGetTime();
-    string timeNow = std::to_string(((int)m_timeMax + ((int)m_timeStart - (int)time)) / 1000);
-    m_timer.setString("time left : " + timeNow);
-
-    if (&m_timer != nullptr)
-    {
-        // position the label on the center of the screen
-        m_timer.setPosition(Vec2(800, 900));
-        m_timer.setScale(2.0f);
-
-        // add the label as a child to this layer
-        getGame()->getLayer().addChild(&m_timer, 1);
-    }
-
 
     // add "EndScene" splash screen"
     auto sprite = Sprite::create("EndScene.png");
@@ -172,15 +157,15 @@ bool EndScene::init()
     return true;
 }
 
-void EndScene::EndCloseCallback(cocos2d::Ref* pSender)
+void WinEndScene::WinEndCloseCallback(cocos2d::Ref* pSender)
 {
     Director::getInstance()->end();
 }
 
-void EndScene::RestartCallback(cocos2d::Ref* pSender)
+void WinEndScene::WinRestartCallback(cocos2d::Ref* pSender)
 {
     Scene* restartgameScene = Game::create();
-    g_pGame1 = (Game*)restartgameScene;
+    g_pGame2 = (Game*)restartgameScene;
 
     Director::getInstance()->replaceScene(restartgameScene);
 

@@ -3,11 +3,12 @@
 class Game : public cocos2d::Scene
 {
 public:
+
+
 	Game();
 	~Game();
 
 	virtual bool init();
-
 	vector<Entity*>& getListObject() { return m_listObject; }
 	vector<Character*>& getListCharacter() { return m_listCharacter; }
 	Layer& getLayer() { return m_gameLayer;}
@@ -69,7 +70,6 @@ public:
 	void addCharacter(float x, float y);
 
 	void update(float) override;
-
 
 	// implement the "static create()" method manually
 	CREATE_FUNC(Game);
