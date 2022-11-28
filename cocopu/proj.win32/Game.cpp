@@ -7,8 +7,14 @@ Game::Game()
     m_countSpawn = 0;
     m_maxSpawn = 0;
 
+    m_timeLastUpdate = 0.0f;
+    m_time = 0.0f;
     m_timeStart = 0.0f;
     m_timeMax = 0.0f;
+    m_acceleration = Game::AccelerationType::ONE;
+    m_timeAcceleration = 0.0f;
+    m_time = 0.0f;
+    m_timeLastUpdate = 0.0f;
 
     m_jump = false;
     m_glide = false;
@@ -33,7 +39,7 @@ bool Game::init()
     m_maxSpawn = 10;
 
     m_timeStart = timeGetTime();
-    m_timeMax = 1000.0f * 1000.0f;
+    m_timeMax = 100.0f * 1000.0f;
 
     m_jump = false;
     m_glide = false;
@@ -52,6 +58,7 @@ bool Game::init()
     {
         return false;
     }
+    addCountExit(1);
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -134,10 +141,10 @@ bool Game::init()
         getLayer().addChild(&m_maxspawn, 1);
     }
 
-    HUD* hud = HUD::create();
-    hud->initialisation();
+    m_hud = HUD::create();
+    m_hud->initialisation();
 
-    addChild(hud);
+    addChild(m_hud);
 
     addChild(&m_gameLayer);
 
@@ -155,6 +162,25 @@ bool Game::init()
 
 void Game::update(float f)
 {
+    m_timeLastUpdate= m_time;
+    m_time = timeGetTime();
+
+    if (m_acceleration == Game::AccelerationType::PAUSE)
+    {
+        addTimeAcceleration(m_time - m_timeLastUpdate);
+        m_hud->getX2Button()->loadTextureNormal("PauseButton.png");
+        m_hud->getX2Button()->loadTexturePressed("PauseButtonSelected.png");
+    }
+    else if (m_acceleration == Game::AccelerationType::TWO)
+    {
+        addTimeAcceleration(m_timeLastUpdate - m_time);
+        m_hud->getX2Button()->loadTextureNormal("X2Button.png");
+        m_hud->getX2Button()->loadTexturePressed("X2ButtonSelected.png");
+    }
+    else {
+        m_hud->getX2Button()->loadTextureNormal("X1Button.png");
+        m_hud->getX2Button()->loadTexturePressed("X1ButtonSelected.png");
+    }
     //death count
     string countDeath = std::to_string(m_countDeath);
     m_death.setString("death :" + countDeath);
@@ -176,16 +202,16 @@ void Game::update(float f)
     m_alive.setString("alive :" + countAlive);
 
     // Update time
-    if (m_timeMax + m_timeStart < timeGetTime())
+    if (m_timeMax + m_timeStart + m_timeAcceleration < timeGetTime())
     {
         // create a scene. it's an autorelease object
-        auto time_up = new EndScene;
-        auto endScene = time_up->createScene();
+        auto end = new EndScene;
+        auto endScene = end->createScene();
         Director::getInstance()->replaceScene(endScene);
     }
 
     int time = (int)timeGetTime();
-    string timeNow = std::to_string(((int)m_timeMax + ((int)m_timeStart - (int)time)) / 1000);
+    string timeNow = std::to_string(((int)m_timeMax + ((int)m_timeStart - (int)time + (int)m_timeAcceleration)) / 1000);
     m_timer.setString("time: " + timeNow);
 
     if (m_jump) {
@@ -206,9 +232,6 @@ void Game::update(float f)
     else if (m_block) {
         m_testAction.setString("Block");
     }
-    else if (m_X2) {
-        m_testAction.setString("X2");
-    }
 
     // Update collide
     for (int i = 0; i < m_listCharacter.size(); i++)
@@ -219,19 +242,6 @@ void Game::update(float f)
         }
     }
 
-    //end 
-    if (getCountExit() < 5 && getCountDeath() + getCountExit() == getMaxSpawn())
-    {
-        auto end = new EndScene;
-        auto endScene = end->createScene();
-        Director::getInstance()->replaceScene(endScene);
-    }
-    else if (getCountExit() >= 5 && getCountDeath() + getCountExit() == getMaxSpawn())
-    {
-        auto WinEnd = new WinEndScene;
-        auto WinEndScene = WinEnd->createScene();
-        Director::getInstance()->replaceScene(WinEndScene);
-    }
 }
 
 void Game::LoadRessources()
@@ -260,10 +270,8 @@ void Game::LoadRessources()
             return;
         }
 
-        //test map
         //inFile.open("../Resources/level/Map.txt", ios::in);
         //inFile.open("../Resources/level/MAP_COCOPU.txt", ios::in);
-
         int count = 0;
         string tp;
         while (getline(inFile, tp)) {
@@ -447,4 +455,14 @@ bool Game::getActionX2()
 {
     return m_X2;
 
+}
+
+void Game::setAcceleration(int acceleration)
+{
+    m_acceleration = acceleration;
+}
+
+void Game::addTimeAcceleration(float value)
+{
+    m_timeAcceleration += value;
 }

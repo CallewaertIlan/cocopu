@@ -27,7 +27,7 @@ void Door::initialisation(float x, float y, int type) {
 void Door::update(float value) {
 	float time = timeGetTime();
 	if (m_typeDoor == Door::ENTER) {
-		if (getGame()->getMaxSpawn() > getGame()->getCountSpawn() && m_timeLastSpawn + 2000.0f < timeGetTime()) {
+		if (getGame()->getMaxSpawn() > getGame()->getCountSpawn() && m_timeLastSpawn + 2000.0f + getGame()->getTimeAcceleration() < timeGetTime()) {
 			int count = getGame()->getCountSpawn();
 			count ++;
 			getGame()->setCountSpawn(count);
@@ -40,6 +40,7 @@ void Door::update(float value) {
 			character->initialisation(getPosition().x, getPosition().y - 36.0f);
 			getGame()->getListCharacter().push_back(character);
 			getGame()->getLayer().addChild(character);
+			getGame()->addCountAlive(1);
 		}
 	}
 }

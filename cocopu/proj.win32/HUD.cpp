@@ -203,12 +203,12 @@ void HUD::createMineButton(float x, float y)
 
 void HUD::createX2Button(float x, float y)
 {
-    auto button = ui::Button::create("X2Button.png", "X2ButtonSelected.png");
-    button->setPosition(Vec2(x, y));
-    button->setScale(0.35);
+    m_x2button = ui::Button::create("X2Button.png", "X2ButtonSelected.png");
+    m_x2button->setPosition(Vec2(x, y));
+    m_x2button->setScale(0.35);
 
 
-    button->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
+    m_x2button->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
         switch (type)
         {
         case ui::Widget::TouchEventType::BEGAN:
@@ -228,7 +228,7 @@ void HUD::createX2Button(float x, float y)
         }
         });
 
-    addChild(button);
+    addChild(m_x2button);
 }
 
 void HUD::createDrawTimer(float x, float y)

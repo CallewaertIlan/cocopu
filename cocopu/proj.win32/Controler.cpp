@@ -27,6 +27,9 @@ bool Controler::init()
 
 bool Controler::onTouchBegan(Touch* touch, Event* event)
 {
+    if (getGame()->getActionX2() && getGame()->getCountExit() > 0)
+        x2();
+
     for (int i = 0; i < getGame()->getListCharacter().size(); i++)
     {
         if (isIn(getGame()->getListCharacter()[i]->getHitboxGlobal(), touch) && getGame()->getListCharacter()[i]->getOpacity() != 0.0f)
@@ -118,4 +121,14 @@ void Controler::dig(Character* character)
         character->setDig(true);
     else
         character->setDig(false);
+}
+
+void Controler::x2()
+{
+    if (getGame()->getAcceleration() == Game::AccelerationType::PAUSE)
+        getGame()->setAcceleration(Game::AccelerationType::ONE);
+    else if (getGame()->getAcceleration() == Game::AccelerationType::ONE)
+        getGame()->setAcceleration(Game::AccelerationType::TWO);
+    else if (getGame()->getAcceleration() == Game::AccelerationType::TWO)
+        getGame()->setAcceleration(Game::AccelerationType::PAUSE);
 }
