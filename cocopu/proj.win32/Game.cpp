@@ -36,10 +36,10 @@ bool Game::init()
     m_countDeath = 0;
     m_countAlive = 0;
     m_countSpawn = 0;
-    m_maxSpawn = 1;
+    m_maxSpawn = 10;
 
     m_timeStart = timeGetTime();
-    m_timeMax = 100.0f * 1000.0f;
+    m_timeMax = 120.0f * 1000.0f;
 
     m_jump = false;
     m_glide = false;
@@ -204,23 +204,17 @@ void Game::update(float f)
     //end 
     if (m_timeMax + m_timeStart + m_timeAcceleration < timeGetTime())
     {
-        EndScene* loseEnd = new EndScene;
-        loseEnd->initialisation(EndScene::LOSE);
-        Scene* loseEndScene = loseEnd->createScene();
+        EndScene* loseEndScene = EndScene::create();
         Director::getInstance()->replaceScene(loseEndScene);
     }
     if (getCountExit() < 5 && getCountDeath() + getCountExit() == getMaxSpawn())
     {
-        EndScene* loseEnd = new EndScene;
-        loseEnd->initialisation(EndScene::LOSE);
-        Scene* loseEndScene = loseEnd->createScene();
+        EndScene* loseEndScene = EndScene::create();
         Director::getInstance()->replaceScene(loseEndScene);
     }
     else if (getCountExit() >= 5 && getCountDeath() + getCountExit() == getMaxSpawn())
     {
-        EndScene* winEnd = new EndScene;
-        winEnd->initialisation(EndScene::WIN);
-        Scene* winEndScene = winEnd->createScene();
+        EndScene* winEndScene = EndScene::create();
         Director::getInstance()->replaceScene(winEndScene);
     }
 

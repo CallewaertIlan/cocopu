@@ -46,7 +46,10 @@ void Character::initialisation(float x, float y) {
 
 void Character::update(float value) {
 	m_time = timeGetTime();
+
 	move();
+
+
 	if (getPosition().y < 0)
 	{
 		getGame()->addCountDeath(1);

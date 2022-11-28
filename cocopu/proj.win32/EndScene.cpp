@@ -12,6 +12,13 @@ Scene* EndScene::createScene()
 // on "init" you need to initialize your instance
 bool EndScene::init()
 {
+    if (getGame()->getTimeMax() + getGame()->getTimeStart() + getGame()->getTimeAcceleration() < getGame()->getTime())
+        m_type = LOSE;
+    else if (getGame()->getCountExit() < 5 && getGame()->getCountDeath() + getGame()->getCountExit() == getGame()->getMaxSpawn())
+        m_type = LOSE;
+    else if (getGame()->getCountExit() > 5 && getGame()->getCountDeath() + getGame()->getCountExit() == getGame()->getMaxSpawn())
+        m_type = WIN;
+
     if (!Scene::init())
     {
         return false;
@@ -41,9 +48,12 @@ bool EndScene::init()
     else
     {
         replayItem->setPosition(Vec2(800, 300));
+        addChild(replayItem, 1);
+        //auto play = Menu::create(replayItem, NULL);
+        //play->setPosition(Vec2::ZERO);
+        //addChild(play, 10);
     }
 
-    this->addChild(replayItem, 1);
 
     //exit btn
     auto closeItem = MenuItemImage::create(
@@ -60,9 +70,21 @@ bool EndScene::init()
     else
     {
         closeItem->setPosition(Vec2(800, 200));
+        addChild(closeItem, 1);
+        //auto close = Menu::create(closeItem);
+        //close->setPosition(Vec2::ZERO);
+        //addChild(close, 10);
     }
-
-    this->addChild(closeItem, 1);
+     //create menu, it's an autorelease object
+    if (this != nullptr)
+    {
+        Menu* close = Menu::create(closeItem, NULL);
+        close->setPosition(Vec2::ZERO);
+        addChild(close, 10);
+        Menu* play = Menu::create(replayItem, NULL);
+        play->setPosition(Vec2::ZERO);
+        addChild(play, 10);
+    }
     /////////////////////////////
     // 3. add your codes below...
 
@@ -165,13 +187,6 @@ bool EndScene::init()
         auto rotateBy = RotateBy::create(1.0f, 40.0f);
         sprite->runAction(RepeatForever::create(rotateBy));
     }
-    // create menu, it's an autorelease object
-    auto close = Menu::create(closeItem, NULL);
-    close->setPosition(Vec2::ZERO);
-    this->addChild(close, 10);
-    auto play = Menu::create(replayItem, NULL);
-    play->setPosition(Vec2::ZERO);
-    this->addChild(play, 10);
 
     return true;
 }
