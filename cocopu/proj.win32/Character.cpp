@@ -60,15 +60,15 @@ void Character::move() {
 	Vec2 movement;
 	if (m_side_right) {
 		//movement.x += (1.0f * m_speed);
-		movement.x += 1.0f;
+		movement.x += 1.0f * getGame()->getAcceleration();
 	}
 	else{
 		//movement.x -= (1.0f * m_speed);
-		movement.x -= 1.0f;
+		movement.x -= 1.0f * getGame()->getAcceleration();
 	}
 
 	//movement.y -= (2.0f * m_speed);
-	movement.y -= 2.0f;
+	movement.y -= 1.0f * getGame()->getAcceleration();
 
 
 	if (m_collideWallRight && movement.x >= 0.0f) {
@@ -163,7 +163,7 @@ void Character::collision(Entity& entity)
 	{
 		if (m_hitboxBottom.intersect(entity.getHitbox()))
 		{
-			if (m_isFalling == true && m_speed > 2.07f)
+			if (m_isFalling == true && m_speed > 2.07f * getGame()->getAcceleration())
 				m_dig = false;
 			if (m_dig)
 			{

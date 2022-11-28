@@ -16,6 +16,8 @@ public:
     void mine(Character* character);
     void dig(Character* character);
 
+    void x2();
+
     bool isIn(Hitbox* hitbox, Touch* touch);
 
     virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);

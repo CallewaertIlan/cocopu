@@ -3,6 +3,13 @@
 class Game : public cocos2d::Scene
 {
 public:
+	enum AccelerationType
+	{
+		PAUSE = 0,
+		ONE,
+		TWO,
+	};
+
 	Game();
 	~Game();
 
@@ -54,6 +61,12 @@ public:
 
 	void addCountAlive(int value);
 
+	void addTimeAcceleration(float value);
+
+	float getTimeAcceleration() { return m_timeAcceleration; };
+
+	void setAcceleration(int acceleration);
+	float getAcceleration() { return m_acceleration; };
 	int getCountExit() { return m_countExit; };
 	int getCountDeath() { return m_countDeath; };
 	int getCountSpawn() { return m_countSpawn; };
@@ -95,6 +108,11 @@ protected:
 	Controler m_controls;
 	Label m_testAction;
 
+	HUD* m_hud;
+
+	float m_acceleationRectX;
+	float m_timeAcceleration;
+
 	Label m_timer;
 	Label m_death;
 	Label m_alive;
@@ -103,5 +121,9 @@ protected:
 	Label m_spawn;
 
 	float m_timeStart;
+	float m_time;
+	float m_timeLastUpdate;
 	float m_timeMax;
+
+	int m_acceleration;
 };

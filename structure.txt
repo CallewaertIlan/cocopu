@@ -52,7 +52,7 @@ HUD		-> actions
 		-> (ex: 0/10 ou 0%) people who take the door
 		-> (ex: 10) people spawn on map
 		-> (ex: 15) people spawned
-		-> button acceleration (on / off)
+		-> button acceleration (x1 / x2)
 
 Map		-> loadMap with .txt
 		-> spawn character with couldown 

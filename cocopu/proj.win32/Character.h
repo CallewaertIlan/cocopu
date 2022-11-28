@@ -50,11 +50,7 @@ private:
 	bool m_isFalling;
 
 	bool m_glide;
-
-	float m_lastMine;
 	bool m_mine;
-
-	float m_lastDig;
 	bool m_dig;
 
 	float m_timeSideCollide;

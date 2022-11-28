@@ -219,5 +219,11 @@
     <Image Include="..\Resources\glide.png">
       <Filter>Source Files\Classes\Resources</Filter>
     </Image>
+    <Image Include="..\Resources\PauseButton.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
+    <Image Include="..\Resources\PauseButtonSelected.png">
+      <Filter>Source Files\Classes\Resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>
